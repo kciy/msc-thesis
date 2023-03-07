@@ -1,6 +1,7 @@
 \chapter{Materials and Methods}\label{chap:methods}
 
 \section{Galaxy Platform}\label{sec:galaxy}
+\todo{focus on workflows}
 Galaxy is an established web-based scientific platform that has become a major player in many fields of life sciences and bioinformatics. It was founded in 2007, and since then, it has provided an emerging amount of resources and tools to empower scientists and researchers to work with biomedical datasets. This powerful platform is free to use and collaborative, making it one of the biggest of its kind. Resources on Galaxy cover genomics, metagenomics, transcriptomics, proteomics, drug discovery and non-biology fields like natural language processing and social sciences.
 
 Galaxy's primary objective is to make analyses more accessible, reproducible, and easier to communicate among researchers. The platform's distinctive and success is attributed to four core elements: a very active community, a public server for analyses, an open-source software ecosystem, and the Galaxy ToolShed. The community adheres to the FAIR practices (Findable, Accessible, Interoperable and Reusable).
@@ -22,9 +23,9 @@ description of basic steps
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.97\textwidth]{media/workflow-diagrams/pipelines-SARS-CoV-2.pdf}
+	\includegraphics[width=0.97\textwidth]{media/3-pipelines-SARS-CoV-2.pdf}
 	\caption{Simplified SARS-CoV-2 ARTIC PE reads iVar-based workflow.}
-	\label{fig:wf-sars}
+	\label{fig:3-pipelines-sars}
 \end{figure}
 
 well-established workflow, includes 'minimal' steps:
@@ -43,9 +44,9 @@ Plus phylogenetic ranking ''to assign a SARS-CoV-2 genome sequence the most like
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.97\textwidth]{media/workflow-diagrams/pipelines-minimal.pdf}
+	\includegraphics[width=0.97\textwidth]{media/3-pipelines-minimal.pdf}
 	\caption{Simplified minimal ARTIC PE reads iVar-based workflow.}
-	\label{fig:wf-minimal}
+	\label{fig:3-pipelines-minimal}
 \end{figure}
 
 which problems should the pipeline solve?
@@ -85,9 +86,9 @@ need to part the reads in two pools and do mapping in two parts: N-mask the  ref
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.97\textwidth]{media/workflow-diagrams/pipelines-LSDV.pdf}
+	\includegraphics[width=0.97\textwidth]{media/3-pipelines-LSDV.pdf}
 	\caption{Simplified LSDV ARTIC PE reads iVar-based workflow.}
-	\label{fig:wf-lsdv}
+	\label{fig:3-pipelines-lsdv}
 \end{figure}
 
 Efficiency: Assembly vs. Mapping!!; efficiency (hier nur kurz, ausführlicher in Diskussion). Wenn Ziel viele Samples/flächendeckende Überwachung ist, dann ist Assembly zu teuer. Im großen Stil soll das hier genutzt werden)
@@ -103,9 +104,9 @@ Efficiency: LoFreq vs. iVar consensus; both consensus identification methods usi
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.97\textwidth]{media/workflow-diagrams/pipelines-AIV.pdf}
+	\includegraphics[width=0.97\textwidth]{media/3-pipelines-AIV.pdf}
 	\caption{Simplified AIV ARTIC PE reads iVar-based workflow.}
-	\label{fig:wf-aiv}
+	\label{fig:3-pipelines-aiv}
 \end{figure}
 
 \section{Workflow Evaluation}

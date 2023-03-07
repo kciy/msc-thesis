@@ -1,56 +1,32 @@
 \chapter{State-of-the-Art}\label{chap:state-art}
-\todo{write about PE data}
-In the demand for an effective, high-quality approach to the analysis of isolates from infected animals, molecular studies help to investigate characteristics of the sample. Genome analysis has become an integral part of animal disease surveillance, especially since the advent of high-throughput sequencing technologies in the last 15 years. Next-generation techniques and applications are described below, the state of the art in poxvirus and avian influenza virus detection and analysis, and lastly the drawbacks of the methods are discussed.
+In the demand for an effective, high-quality approach to the analysis of isolates from infected animals, molecular studies help to investigate characteristics of the sample. Genome analysis has become an integral part of animal disease surveillance, especially since the advent of high-throughput sequencing technologies in the last 15 years. Next-generation techniques and applications are described below, the state of the art in poxvirus and avian influenza virus detection and analysis, and lastly the drawbacks of the methods discussed.
 
 \section{High-throughput Technologies in Diagnostic Virology}
-
-When comparing DNA sequencing technologies, there are differences in speed, throughput and volume of sequences. The term ''next generation'' used to describe newer technologies in the field implies a next step in the evolution of sequencing technologies. As sequencing machine technologies evolve rapidly, there are gradations such as ''second generation'' and ''third generation''. Following the original 1977 Sanger sequencing method using radioactivity and gels, second generation sequencers are advancements of Sanger sequencing using sequencing by synthesis~\cite{mardis2008next}. The reactions run in parallel and drastically reduce overall costs. Third-generation sequencing technologies typically generate longer primary reads of DNA (and RNA) molecules while maintaining the parallelism of the technology and taking advantage of this benefit~\cite{slatko2018overview}. The most commonly used next-generation technologies for DNA sequencing and their applications are described below.
+When comparing DNA sequencing technologies, there are differences in speed, throughput and volume of sequences. The term ''next-generation'' in NGS used to describe newer technologies in the field implies a next step in the evolution of sequencing technologies. As sequencing machine technologies evolve rapidly, there are gradations such as ''second-generation'' and ''third-generation''. Following the original 1977 Sanger sequencing method using radioactivity and gels, second-generation sequencers are advancements of Sanger sequencing that uses sequencing by synthesis~\cite{mardis2008next}. In second-generation methods, reactions run in parallel and drastically reduce overall costs compared to Sanger sequencing. They produce short sequence reads length and are able to detect reads without using electrophoresis.
+Third-generation sequencing technologies typically generate longer primary reads of DNA (and RNA) molecules while maintaining the massive parallelism of the technology and taking advantage of this benefit~\cite{slatko2018overview}. The nowadays most commonly used next-generation technologies for DNA sequencing and their applications are described below.
 
 \subsection{Overview of NGS Platforms and Applications}
-By far the biggest player in the field of DNA sequencing today is the Illumina platform, first developed by Solexa and Lync Therapeutics. Illumina sequencing is based on bridge amplification, which creates clusters of copies of each DNA fragment. This technique involves repeated synthesis reactions with proprietary modified nucleotides containing a different fluorescent label for each of the four bases A, T, C and G. The reactions are performed over 300 or more rounds, and fluorescent detection allows for faster detection through direct imaging. An Illumina sequencer outputs data in the form of sequence reads, which are short DNA fragments ranging from 50 to 600 base pairs in length, depending on the specific instrument and protocol used~\cite{illumina2015introduction, slatko2018overview, mardis2008next}. The output data from an Illumina sequencer is typically in the form of raw sequence files in FASTQ format, which contain the base calls and corresponding quality scores for each read. These reads can be used for downstream analyses such as viral genome assembly and variant calling.
+By far the biggest player in the field of DNA sequencing is the Illumina platform, first developed by Solexa and Lync Therapeutics~\cite{illumina2015introduction}. Illumina sequencing is based on bridge amplification, which creates clusters of copies of each DNA fragment. This technique involves repeated synthesis reactions with proprietary modified nucleotides containing a different fluorescent label for each of the four bases A, T, C and G. The reactions are performed over 300 or more rounds, and fluorescent detection allows for faster detection through direct imaging. An Illumina sequencer outputs data in the form of sequence reads, which are short DNA fragments ranging from 50 to 600 base pairs in length depending on the specific instrument and protocol used~\cite{illumina2015introduction, slatko2018overview, mardis2008next}. The output data from an Illumina sequencer typically is in the form of raw sequence files in FASTQ format, which contain the base calls and corresponding quality scores for each read. These reads can be used for downstream analyses such as viral genome assembly and variant calling.
 
-Oxford Nanopore Technologies (ONT) is one of the third generation sequencing technologies and is a paradigm shifting platform. It measures changes in ionic current accross membranes as single-stranded DNA nucleotides pass through a nanopore~\cite{jain2016oxford}. Nanopore-based DNA sequencing technologies like ONT come as a portable, small MinION device, allowing experts to use it for many applications where space requirements or portability are important~\cite{greninger2015rapid, jain2016oxford}. Despite its advantages, the main caveat of ONT is its relatively high error rate compared to other HTS methods~\cite{fu2019comparative}. This makes ONT less suitable for single-nucleotide variant analysis that is required in some diagnostic applications~\cite{bowden2019sequencing, stefan2022comparison}.
+Oxford Nanopore Technologies (ONT) is a third-generation paradigm shifting sequencing technology. It measures changes in ionic current accross membranes as single-stranded DNA nucleotides pass through a nanopore~\cite{jain2016oxford}. Nanopore-based DNA sequencing technologies are purchasable as a portable, small MinION (ONT) device, allowing experts to use it for applications where space requirements or portability are important~\cite{greninger2015rapid, jain2016oxford}. The cyclic mode of sequencing used in second-generation approaches is replaced by sequencing in real-time with read lengths of up to 10,000 basepairs~\cite{jain2016oxford}. Despite its advantages, the main caveat of ONT is its relatively high error rate compared to other HTS methods~\cite{fu2019comparative}. This makes ONT less suitable for single-nucleotide variant analysis that is required in some diagnostic applications~\cite{bowden2019sequencing, stefan2022comparison}.
 
-Other frequently used platforms are Roche/454 sequencing, Ion Torrent technology and SOLiD (Sequencing by Oligonucleotide Ligation and Detection). Fourth-generation platforms include single molecule real-time sequencing (SMRT) by PacBio and nanopore sequencing~\cite{rhoads2015pacbio}. 
+Other frequently used second-generation platforms are Roche/454 sequencing, Ion Torrent (Thermo Fisher) technology and SOLiD (Sequencing by Oligonucleotide Ligation and Detection). Third-generation platforms include single molecule real-time sequencing (SMRT) by PacBio and nanopore sequencing~\cite{rhoads2015pacbio}. 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{media/other/ngs.png}
+	\includegraphics[width=0.5\textwidth]{media/2-ngs.png}
 	\caption{Overview of next-generation sequencing technology applications in diagnostic virology.}
-	\label{fig:ngs}
-\end{figure}
+	\label{fig:2-ngs}
+\end{figure} 
 
-As NGS platforms are widely used in biomedical contexts, some of the most important applications in diagnostic virology are depicted in Figure~\ref{fig:ngs}. In virology, metagenomics can be used to identify viruses in complex clinical samples~\cite{chiu2019clinical}. This technique allows for the detection of known and novel viruses without prior knowledge of the infectious agent. Metagenomics involves the sequencing of all genetic material in a sample, including viral genomes, to identify the presence of viruses. If a virus is identified, genomic variation refers to differences in the DNA sequence of a virus between different strains or isolates. These variations can be used to track the spread of an outbreak, identify the source of an infection, or determine the level of virulence of a virus~\cite{capobianchi2013next}. \\
-Genetic selection refers to the process by which certain viral strains become more prevalent in a population over time due to selective pressures. In diagnostic virology, genetic selection can be used to track the evolution of a virus over time and determine which strains are most likely to cause outbreaks or epidemics. This is of special interest in the backtracing of infected animals to know where the virus came from. \\
-Using gene ontology, functions and interactions of genes are described. This is crucial in order to identify the genes responsible for specific viral functions and to understand how these functions contribute to viral pathogenesis. \\
-Based on their genetic and structural characteristics, viruses are classified to existing systems, called taxonomic classification. This clustering analysis can be used to identify the type of virus causing an infection and determine its potential for transmission and pathogenicity~\cite{dutilh2021perspective}.\\
-Whole-genome de novo sequencing refers to the sequencing of an entire viral genome without prior knowledge of its genetic sequence. Similar to metagenomics, this technique can be used to identify novel viruses and to track the evolution of a virus over time~\cite{slatko2018overview}.
+As NGS platforms are widely used in biomedical and clinical contexts, some of the most important applications in diagnostic virology are depicted in Figure~\ref{fig:2-ngs}. In virology, metagenomics can be used to identify viruses in complex clinical samples~\cite{chiu2019clinical}. It allows for the detection of known and novel viruses without prior knowledge of the infectious agent. Metagenomics involves the sequencing of all genetic material in a sample, including viral genomes, to identify the presence of viruses. Once a virus is identified, genomic variation refers to differences in the DNA sequence of a virus between different strains or isolates. These variations can be used for tracking the spread of an outbreak, identification of sources of an infection, or determination of the level of virus virulence~\cite{capobianchi2013next}. \\ 
+Genetic selection describes to the process by which certain viral strains become more prevalent in a population over time due to selective pressures. In diagnostic virology, genetic selection is used to track the evolution of a virus in the course of time and determine which strains are most likely to cause outbreaks or epidemics. This is of special interest in the backtracing of infected animals to know where the virus came from. Using gene ontology, functions and interactions of genes are described. This is crucial to identify the genes responsible for specific viral functions and to understand how these functions contribute to viral pathogenesis. \\
+Based on their genetic and structural characteristics, viruses are classified to existing systems, called taxonomic classification. This clustering analysis can be used for the type identification of a virus causing infections and determination of its potential for transmission and pathogenicity~\cite{dutilh2021perspective}.\\
+Whole-genome de novo sequencing is the sequencing of an entire viral genome without prior knowledge of its genetic sequence. Similar to metagenomics, this technique can be used to identify novel viruses, to study mutations in viral genomes and to track the evolution of a virus over time~\cite{slatko2018overview}.
 
 \subsection{Detection of Viral Pathogens}
-- NGS-based methods: VIDISCA protocol for SARS-CoV in 2004
-- metagenomics-based strategies: higher sensitivity (compared to microarray-based assays), detect full spectrum of viruses
-- NGS-based: Illumina GA platform for detection of new viruses (influenza A) and de novo assembly (only works with high enough number of reads generated)
-- bats: coronavirus consensus PCR and unbiased HTS (high-throughput pyrosequencing) -> reveal presence of sequences of new coronavirus related to SARS-CoV
-
-\subsection{Data Analysis Issues}
-
-no standardization of techniques \\
-no knowledge sharing/best practices/common source of knowledge \\
-livestock diseases do not receive much attention from bioinformaticians and therefore not enough monitoring;
-although in regions where outbreaks have larger impacts on economy and other fields, the surveillance is crucial for prevention and control.
-
-This emphasizes the importance of free and easy-access platforms like Galaxy that entitle professionals to analyse their samples. Technical know-how to develop and maintain servers for analysis of NGS data is not a global standard and also not needed everywhere when multidisciplinary approaches can be shared through platforms.
-
-costs are relatively high, especially for countries or health organizations in development countries that are still affected by diseases they want to monitor
-
-%%%%%%%%%%%
-
-Illumina shows low coverage of AT rich regions~\cite{harismendy2009evaluation}
-
-* chimerical sequences (artifacts originating from joining sequences), point mutations, insertions/deletions which occur during reverse transcription, PCR amplification or sequencing itself
-* cleaning step or filtering phase removes low-quality reads from the dataset, while the error correction separates true variants from those due to experimental noise. -> idea that errors are randomly distributed with low frequency, and real mutations are clustered and their abundance are quantified
-
-Each application of software with NGS data requires expertise in resolving limitations and drawbacks of specific methods. This in turn requires bioinformatic skills and the careful interpretation of results. Still, NGS provides a large pool of methods which eases the tasks, although available algorithms for genome assembly and amplicon analysis have drawbacks and limitations~\cite{finotello2012comparative}.
+For NGS methods to be a viable tool in diagnosis of viral animal diseases, the methods must be efficient and reliable. Almost all downstream analyses depend on the data obtained by sequencing, so it is imperative to choose the most appropriate method for each application. Metagenomics-based approaches use whole-genome sequencing to characterise viral diversity in animal, human and environmental samples. The detection of rare and novel infectious pathogens and the study of mutations in the genome are crucial for developing a deeper understanding of livestock viromes and potential zoonotic agents. In addition, NGS has been shown to detect non-culturable organisms as well as co-infections that have not been detected using traditional microbiological approaches~\cite{cantalupo2019detecting}. Metagenome sequencing often relies on a low number of pathogenic reads to detect and to make diagnostic calls. As sequencing depth directly influences genome coverage that can be obtained, the optimal amount of data to cover the complete genome is necessary. It has been shown that for a full virus genome to be represented, NGS data generated from ribo-depleted total RNA with a minimum length of one million high-quality reads works best~\cite{visser2016next}. Nevertheless, validation pipelines and confirmatory tests are needed for NGS approaches to pathogen detection~\cite{minogue2019next}.
+\todo{more?}
 
 % WOAH/FAO: Network of Expertise on Animal Influenza
 % WHO: GISRS (Global Influenza Surveillance and Response System) for human influenza,
@@ -58,40 +34,72 @@ Each application of software with NGS data requires expertise in resolving limit
 % WHO: GISAID (Global Initiative on Sharing All Influenza Data)
 % \cite{daniels2023health}
 
+\subsection{Data Analysis Issues}
+Since the surveillance of viral animal diseases with NGS is advancing rapidly, it is important that regions and health organizations that experience high damage of viral outbreaks but do not have their own facilities and know-how have access to the needed tools and knowledge. Costs for NGS sequencers are still high and the access to appropriate laboratories is not given everywhere. Networks like VETLAB and standardisation of techniques, for example freely available and published by the WOAH, can enable professionals worldwide independent of their equipment on site. In the scope of the ZODIAC project, this aspect is addressed by providing protocols for each step from taking samples of potentially infected animals to the detailed analysis and derived actions~\cite{zodiac2021}.\\
+This emphasizes the importance of free and easy-access platforms that entitle professionals to analyse their samples. Technical know-how to develop and maintain servers for analysis of NGS data is not part of the average global standard tool package, even though multidisciplinary approaches can help to facilitate by being shared through platforms.
+
+NGS methods themselves have downsides that need to be considered when applying these techniques. Generally, chimerical sequences are formed during sequencing, which may be interpreted as false positives for novel organisms. Chimeric products are artifacts originating from joining sequences and are represented by point mutations, insertions and deletions. Chimera formation also occurs during PCR amplification~\cite{zylstra1998pcr}.\\
+During bioinformatics analysis steps using algorithms with computationally expensive steps, the choice of the algorithm as well as its configuration settings have huge impact on the final results obtained. This includes algorithms in steps such as filtering for quality, clustering and sequence classification~\cite{kopylova2016open}. The cleaning step or filtering phase eliminates low-quality reads from the dataset, whereas the error correction process distinguishes true variants from those caused by experimental noise. This is based on the concept that errors occur randomly with low frequency, while true mutations tend to be clustered, and their frequency can be measured~\cite{zagordi2010error}. Longer reads avoid this problem because contigs must not be assembled in the first place, avoiding clustering and filtering errors. This is why the shift in third-generation and later sequencing platforms is towards longer reads again. \\
+Each application of software with NGS data requires expertise in resolving limitations and drawbacks of specific methods. This in turn requires skills and experience in the field and the careful interpretation of results. Still, NGS provides a large pool of methods which eases this task, although available algorithms for genome assembly and amplicon analysis have drawbacks and limitations~\cite{finotello2012comparative}.
+
 \section{NGS Methods for Poxviruses}
-
-difference/similarities between monkeypox, goat pox, sheep pox etc. \\
-advances in surveillance (4 genera of poxviruses are zoonotic and may infect humans)
-
-classification based on phenotypic characteristics.
+In the following, current approaches to analyse NGS data of poxviruses are described. To get into the topic, the characteristics about poxviruses that group for example monkeypox, goatpox and sheeppox are examined.
 
 \subsection{Poxviruses}
-viral disease that affects cattle, transmission through blood-feeding insects such as ticks or some species of mosquitoes and flies. \\
-* symptoms \\
-vaccination programme (mass-vaccination by EU commission protecting >1.8million cattle)\\
-spreading in African countries, since 2012 present in middle east to south-east europe
+Throughout human history, poxviruses have played a significant role with variola being the most notorious as it is the causative agent of smallpox. Smallpox has been described in Chinese texts dating back to the 4th Century AD, and evidence of pox-like scars found on Egyptian mummies suggests the disease may have existed as far back as the 2nd millennium BC~\cite{fenner1988history}. The discovery of a vaccine for smallpox made it the first disease to be eradicated by human efforts, and variola was the first human virus to be successfully eliminated~\cite{fenner2000adventures}. Modern vaccinology owes its origins to Edward Jenner's discovery in the late 18th century that zoonotic infections with the ''cowpox virus'' provided immunity to smallpox~\cite{fenner1988history}. Furthermore, vaccinia virus, which is now used for smallpox vaccination, was the first animal virus to be observed using electron microscopy and the first to be utilized as a vector for transporting foreign genes into animals. \\
+The family of poxviruses, or \textit{Poxviridae}, is a family of double-stranded DNA viruses. Its natural hosts are vertebrates and arthropods and there are currently 83 species within 22 genera in this family. The family is divided into two sub-families, \textit{Entemopoxvirinae} (insect-infecting viruses) and \textit{Chordopoxvirinae} (vertebrate-infecting viruses). Because of the medical and veterinary relevance of many of the members, Chordopoxviruses are among the most studied groups of viruses in virology. \\
+Historically, poxviruses were classified based on disease symptoms. Humans, cows, sheep, goats, horses and pigs have been studied to determine not only clinical symptoms but with the aim to classify poxviruses. This genus classisification has been confirmed by recent comparative genome analysis~\cite{gubser2004poxvirus}. Symptoms of disease caused by a poxvirus infection are skin lesions that can differ in size. Depending on the type of poxvirus, the papules can vary from small and pearly papules in infections of lumpy skin disease virus (LSDV) to larger crusts and spread generalized pustules in infections with the variola virus. Other general symptoms include fever, headache and rash.
 
-Zoonotic poxviruses
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[ht]
+	\begin{tabular}{lll}
+	\hline
+	\textbf{Genus}      & \textbf{Virus Species}                          & \textbf{Natural Hosts}                      \\ \hline
+	Avipoxvirus         & Canarypox virus                                 & Songbirds 									\\ 
+						& Fowlpox virus                                   & Chickens, turkeys                           \\ \hline
+	Capripoxvirus       & Sheep pox virus\textsuperscript{1}              & Sheep                                       \\
+	                    & Lumpy skin disease virus                        & Cattle                                      \\ \hline
+	Cervidpoxvirus      & Deerpox virus                                   & Deer                                        \\ \hline
+	Crocodylidpoxvirus  & Crocodilepox virus\textsuperscript{1}           & Crocodiles                                  \\ \hline
+	Leporipoxvirus      & Myxoma virus                                    & Rabbits                                     \\ \hline
+	Molluscipoxvirus    & Molluscum contagiosum virus\textsuperscript{1}  & Humans, primates, birds, dogs               \\ \hline
+	Orthopoxvirus       & Variola virus                                   & Humans (eradicated)                         \\ 
+						& Mpox virus\textsuperscript{1}                   & Human, primates                             \\ 
+						& Cowpox virus\textsuperscript{1}                 & Human, cats, cows, elephants                \\ 
+						& Vaccinia virus\textsuperscript{1}               & Humans, cattle, buffalos, rabbits           \\ 
+						& Camelpox virus                                  & Camels                                      \\ \hline
+	Parapoxvirus        & Pseudocowpox virus\textsuperscript{1}           & Humans, cattle                              \\ 
+						& Orf virus\textsuperscript{1}                    & Humans, sheep, goats, etc.                  \\ \hline
+	Suipoxvirus         & Swinepox virus                                  & Pigs                                        \\ \hline
+	Yatapoxvirus        & Yaba monkey tumour virus\textsuperscript{1}     & Humans, rhesus monkeys                      \\ \hline
+	\textsuperscript{1} Zoonotic disease &                                &                                             \\
+	\end{tabular}
+	\caption{Representative viruses from the ten Chordopoxvirus genera.}
+	\label{tab:2-zoon}
+\end{table}
 
-Transmission modes, limited host range 
+Zoonotic poxviruses are represented in at least three genera of poxviruses, namely Orthopoxvirus, Parapoxvirus and Yatapoxvirus, other poxviruses appearing in animals are not known to be zoonotic. Some examples of the corresponding diseases are mpox which was formerly known as monkeypox, cowpox, vaccinia and orf virus. Table~\ref{tab:2-zoon} shows representatives of the ten Chrodopoxvirus genera. The zoonotic poxviruses are all in the Chordopoxviruses subfamily, which is characterised by its large, linear double-stranded genome. Size varies between 134~\cite{brunetti2003complete} to 365 kilobases~\cite{tulman2004genome}. Chordopoxvirus genomes contain 130 to 328 open reading frames (ORF), and typically, two identical inverted terminal repeats (ITR) are located at both ends of poxvirus genomes. \\
+Vaccination is available for smallpox, and the vaccine is even considered protective against all orthopoxvirus infections. It is recommended for laboratory staff that works with mpox, cowpox, vaccinia and variola~\cite{cono2003smallpox}. For animals, there is a smallpox vaccine that is used to protect elephants against cowpox~\cite{kurth2008rat}. Sheep and goats are broadly vaccinated with an orf vaccine, which is, similar to smallpox vaccine, a live virus. The effective vaccination against existing poxvirus disease and further microbiological studies as well as similarities among poxviruses are motivating factors to extend existing data analysis pipelines that work for a specific pox virus, so that it can work with samples of other pox viruses.
 
-2 subfamilies, one infects vertebrates and one infects insects
--> 10 genera infect vertebrates
-
-characteristic ITR that is left out in other pipelines (Yale University primer scheme starts after and ends before ITR)
-
-with monkeypox outbreak in 2022, professionals of the field had the event to examine another pox virus, seeing similarities among pox viruses motivates to extend existing pipelines for data analyses to work with samples of all pox viruses
-
-one poxvirus to mention in more detail:
-Lumpy Skin Disease (LSD) is caused by the virus belonging to the Capripoxvirus (CaPV) genus within the family Poxviridae, subfamily Chordopoxvirinae~\cite{walker2019changes}. The LSDV genome is a double-stranded linear DNA molecule of circa 151 kilobasepairs in length. It contains between 147 and 156 open reading frames. With a sequence identity of over 96\% with the other CaPV genus members sheep pox and goatpox, the lSDV genome is very similar to the other CaPV genomes~\cite{tulman2001genome}. These three viruses of the capripoxvirus genus are the most serious poxvirus diseases of livestock in terms of economic losses in the case of an outbreak. 
-
-One strain of LSDV that has been extensively studied is the Neethling strain, first isolated in Kenya in 1958. It constitutes the strain used for the live-attenuated vaccine that is widely used for cattle against LSDV outbreaks. Similar to other poxviruses, the LSDV genome consists of a central coding region which is bounded by two identical inverted terminal repeat (ITR) regions with a length of circa 2,400 basepairs at both ends of the genome. This is a key characteristic to consider during reconstruction of the genome. 
-
-capripox not transmissable to humans -> NOT a zoonosis
+\subsubsection*{Lumpy Skin Disease Virus}
+Lumpy Skin Disease (LSD) is caused by the lumpy skin disease virus belonging to the Capripoxvirus (CaPV) genus within the family of poxviruses, subfamily Chordopoxvirinae~\cite{walker2019changes}. The LSD virus genome is a double-stranded linear DNA molecule of circa 151 kilobasepairs in length. It contains between 147 and 156 open reading frames. With a sequence identity of over 96\% with the other CaPV genus members sheep pox and goatpox, the LSDV genome is very similar to the other CaPV genomes~\cite{tulman2001genome}. It is not known to be transmissiable to humans and therefore not a zoonosis. These three viruses of the capripoxvirus genus are the most serious poxvirus diseases of livestock in terms of economic losses in the case of an outbreak. \\
+One strain of LSDV that has been extensively studied is the Neethling strain, first isolated in Kenya in 1958. It constitutes the strain used for the live-attenuated vaccine that is widely used for cattle against LSDV outbreaks. Similar to most other poxviruses, the LSDV genome consists of a central coding region which is bounded by two identical inverted terminal repeat (ITR) regions with a length of circa 2,400 basepairs at both ends of the genome. This is a key characteristic to consider during reconstruction of the genome. 
 
 \subsection{Application of NGS Technologies in Poxvirus Diagnostics}
+characteristic ITR that is left out in other pipelines (Yale University primer scheme starts after and ends before ITR)
 
 https://www.sciencedirect.com/science/article/pii/S0166093422000118 explains Primer scheme and why tiling amplicon approach makes sense even for large genome size of CaPV genome and complex structure with repetitive ITR regions
+
+* VirusDetect https://www.sciencedirect.com/science/article/pii/S0042682216303166
+virus discovery using sRNA sequences. evaluates sRNA size profiles
+
+* VirIdAl https://www.mdpi.com/1999-4915/13/10/2006
+detecting and identifying viral pathogens in sequencing data. filtering, virus search (megablast), additional search
+
+* with Neural-KSP \url{https://www.researchgate.net/publication/307615364_Finishing_monkeypox_genomes_from_short_reads_Assembly_analysis_and_a_neural_network_method}
+monkeypox genome construction. "smart" gap filling
+
+
 
 
 \section{NGS Methods for Avian Influenza Virus}\label{sec:AIV}
