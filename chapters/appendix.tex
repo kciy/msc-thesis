@@ -1,5 +1,43 @@
 \chapter*{Appendix}\label{chap:appendix}
 
-* table with WF tools, versions? 
+% * table with WF tools, versions
+% * results of datasets
 
-* results of datasets
+\section*{AIV Workflow Tools}
+\renewcommand{\arraystretch}{1.4}
+\begin{table}[ht!]
+	\begin{tabular}{llll}
+		\hline
+		\textbf{No.} & \textbf{Step}                                                                             & \textbf{Tool}  & \textbf{Tool Version} \\ \hline \hline
+		\textbf{1}   & Preprocessing                                                                             & fastp          & 0.20.1                \\
+		\textbf{2}   & \begin{tabular}[c]{@{}l@{}}Find closest reference for\\hybrid reference sequence\end{tabular} & VAPOR          & 1.0.2                 \\
+		\textbf{3}   & Mapping                                                                                   & BWA-MEM        & 0.7.17.2              \\
+		\textbf{4}   & Quality filtering and trimming                                                            & Samtools       & 1.9                   \\
+		\textbf{5}   & Consensus sequence construction                                                           & iVar consensus & 1.3.1                 \\
+		\textbf{6}   & Genome annotation                                                                         & Prokka         & 1.14.6                \\
+		\textbf{7}   & Find and visualize SNPs                                                                                 & snipit         & 1.0.7                 \\
+		\textbf{8}   & Multiple sequence alignment                                                               & MAFFT          & 7.508                 \\
+		\textbf{9}   & Phylogenetic tree construction                                                            & IQ-Tree        & 2.1.2                 \\ \hline
+	\end{tabular}
+	\caption{Galaxy tools that were used for each of the listed steps of the AIV workflow with their tool version number.}
+	\label{tab:aiv-tools-steps}
+\end{table}
+
+\newpage
+\section*{Poxvirus Workflow Tools}
+\renewcommand{\arraystretch}{1.4}
+\begin{table}[ht!]
+	\begin{tabular}{llll}
+	\hline
+	\textbf{No.} & \textbf{Step}                      & \textbf{Tool}  & \textbf{Tool Version} \\ \hline \hline
+	\textbf{1}   & Mask reference for pool1 and pool2 & maskseq        & 5.0.0                 \\
+	\textbf{2}   & Preprocessing                      & fastp          & 0.23.2                \\
+	\textbf{3}   & Mapping                            & BWA-MEM        & 0.7.17.2              \\
+	\textbf{4}   & Quality filtering and trimming     & Samtools view  & 1.15.1                \\
+	\textbf{5}   & Merge mappings of pool1 and pool2  & Samtools merge & 1.15.1                \\
+	\textbf{6}   & Primer trimming                    & iVar trim      & 1.3.1                 \\
+	\textbf{7}   & Consensus sequence construction    & iVar consensus & 1.3.2                 \\ \hline 
+	\end{tabular}
+	\caption{Galaxy tools that were used for each of the listed steps of the Poxvirus workflow with their version number.}
+	\label{tab:pox-tools-steps}
+\end{table}
