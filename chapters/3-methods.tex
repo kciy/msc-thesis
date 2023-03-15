@@ -13,10 +13,9 @@ Important contributions of Galaxy, as stated by the Galaxy Community (2022), inc
 
 The platform is continuously enhanced, and it still attracts around 2,000 new users every month, indicating the quality and significance of the project. The team and infrastructure of Galaxy initially come from the Nekrutenko lab in the Center for Comparative Genomics and Bioinformatics at Penn State, the Taylor lab at Johns Hopkins University, and the Goecks Lab at Oregon Health \& Science University. All of these organisations have contributed significantly to the success of Galaxy. There are 138 public servers available worldwide as of 2023, while the most prominent general-purpose server instances are hosted by teams at University of Freiburg, Germany (for \href{https://usegalaxy.eu/}{UseGalaxy.eu}), Texas Advanced Computing Center (for \href{https://usegalaxy.org/}{UseGalaxy.org}) and Genomics Virtual Laboratory, formerly at the University of Queensland (for \href{https://usegalaxy.org.au/}{UseGalaxy.org.au}). These main public servers are synchronized in their tools and set of reference tools~\cite{10.1093/nar/gkac247}.
 
+\section{Requirements}
 
-\section{Workflow Design}
-
-\subsection{SARS-CoV-2 Pipeline as Baseline}
+SARS-CoV-2 Pipeline as Baseline. \\
 annotated variants are of interest \\
 description of basic steps
 
@@ -39,8 +38,6 @@ well-established workflow, includes 'minimal' steps:
 Plus Variant Calling and genome annotation; \\
 Plus phylogenetic ranking ''to assign a SARS-CoV-2 genome sequence the most likely lineage based on a chosen nomenclature system'' (Pangolin)
 
-\subsection{Requirements}
-
 \begin{figure}
 	\centering
 	\includegraphics[width=0.97\textwidth]{media/3-pipelines-minimal.pdf}
@@ -52,7 +49,7 @@ which problems should the pipeline solve?
 
 what is "ampliconic" sequence analysis, ARTIC Illumina-sequenced data
 
-\subsubsection{Requirements for LSDV Workflow}
+\subsubsection{Requirements for Poxvirus Workflow}
 - repetitions in the start and end regions → need to split reads into 2 pools and mask references \\
 - after splitting, merging alignments back
 
@@ -65,12 +62,14 @@ what is "ampliconic" sequence analysis, ARTIC Illumina-sequenced data
 
 For a detailed genetic analysis of the AIV genome, several consecutive steps are required after taking a sample from an infected host and sequencing it. NGS data need to be preprocessed in order to remove reads that are too short, have low base quality or include NGS platform-specific adapters that are ligated to the read ends and need to be trimmed.
 
+\subsubsection{Requirements for FMDV Workflow}
+
 \section{Workflow Development}
-"Reference-based genomic Surveillance" (INSaFLU)
+''Reference-based genomic Surveillance'' (INSaFLU)
 
-\subsection{Pox Virus Illumina Amplicon Workflow}
+\subsection{Poxvirus Illumina Amplicon Workflow}
 
-Tiling amplicon approach for CaPV genome. Makes up 23 primer pairs for an amplicon size of 7.5 kb each instead of smaller sizes usually used in tiling amplicon protocols.
+Tiling amplicon approach for CaPV genome. Makes up 23 primer pairs for an amplicon size of 7.5 kb each instead of smaller sizes usually used in tiling amplicon protocols. (ref2.2.2)
 
 Workflow is composed of seven crucial steps:
 - preparing reference sequence for mapping (masking halves)
@@ -83,7 +82,7 @@ Workflow is composed of seven crucial steps:
 
 LSDV genome has its central coding region bounded by identical inverted terminal repeats,
 containing 156 putative genes. the repeat of the ITRs would make any mapping in these regions ambiguous.
-need to part the reads in two pools and do mapping in two parts: N-mask the  reference 
+need to part the reads in two pools and do mapping in two parts: N-mask the reference 
 
 \begin{figure}
 	\centering
@@ -92,8 +91,9 @@ need to part the reads in two pools and do mapping in two parts: N-mask the  ref
 	\label{fig:3-pipelines-lsdv}
 \end{figure}
 
-Efficiency: Assembly vs. Mapping!!; efficiency (hier nur kurz, ausführlicher in Diskussion). Wenn Ziel viele Samples/flächendeckende Überwachung ist, dann ist Assembly zu teuer. Im großen Stil soll das hier genutzt werden)
+Efficiency: Assembly vs. Mapping; efficiency more details in discussion.
 
+If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time senstive. The presented pipeline could be used in a broad context for the use in many laboraties.
 building index is expensive (BWT)
 
 \subsection{AIV Illumina Amplicon Workflow}
@@ -110,9 +110,4 @@ Efficiency: LoFreq vs. iVar consensus; both consensus identification methods usi
 	\label{fig:3-pipelines-aiv}
 \end{figure}
 
-\section{Workflow Evaluation}
-\subsection{Evaluation of AIV Workflow Using Test Datasets}
- Sciensano s4+s8, Tunesian?
-
-\subsection{Evaluation of Pox Virus Workflow Using LSDv Test Dataset}
- Sciensano by Elisabeth Mathijs
+\subsection{FMDV Illumina Amplicon Workflow}
