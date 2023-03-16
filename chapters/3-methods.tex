@@ -19,12 +19,12 @@ SARS-CoV-2 Pipeline as Baseline. \\
 annotated variants are of interest \\
 description of basic steps
 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=0.97\textwidth]{media/3-pipelines-SARS-CoV-2.pdf}
-	\caption{Simplified SARS-CoV-2 ARTIC PE reads iVar-based workflow.}
-	\label{fig:3-pipelines-sars}
-\end{figure}
+% \begin{figure}[ht!]
+% 	\centering
+% 	\includegraphics[width=0.97\textwidth]{media/3-pipelines-SARS-CoV-2.pdf}
+% 	\caption{Simplified SARS-CoV-2 ARTIC PE reads iVar-based workflow.}
+% 	\label{fig:3-pipelines-sars}
+% \end{figure}
 
 tested workflow, includes 'minimal' steps:
 \begin{enumerate}
@@ -40,11 +40,12 @@ Plus phylogenetic ranking ''to assign a SARS-CoV-2 genome sequence the most like
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.97\textwidth]{media/3-pipelines-minimal.pdf}
-	\caption{Simplified minimal ARTIC PE reads iVar-based workflow.}
-	\label{fig:3-pipelines-minimal}
+	% \includesvg[width=0.97\textwidth]{media/general.svg} 
+	\includegraphics[width=0.97\textwidth]{media/general.jpg}
+	% \includegraphics[width=0.97\textwidth]{media/general.png}
+	\caption{General workflow for the consensus genome construction and analysis of paired-end reads.} 
+	\label{fig:3-general-wf}
 \end{figure}
-
 
 which problems should the pipeline solve?
 
@@ -52,23 +53,18 @@ what is "ampliconic" sequence analysis, ARTIC Illumina-sequenced data
 
 \subsubsection{Requirements for Poxvirus Workflow}
 - repetitions in the start and end regions → need to split reads into 2 pools and mask references \\
-- after splitting, merging alignments back
+- after splitting, merging alignments back 
 
 \subsubsection{Requirements for AIV Workflow}
-- reference for each of the 8 segments has to be chosen \\
-- align reference of each segment with consensus sequence and add to phylogenetic analysis \\
-- snipit for visualisation of SNPs \\
-- trimming would dismiss too many of the already short reads \\
-- have a reference database ready for VAPOR (multifasta) with read name pattern \\
-- dismiss B/C/D strains and H17, H18 subtypes (occur in bats only)
-\\ a tool to get closest reference
+The main objectives of surveillance of AIV on the genetic level are to get phylogenetic insights and to check for new variants that could occur in the HA and NA proteins as a consequence of reassortment. \\
+A pipeline for an avian influenza virus sample that should build a consensus sequence in order to check for mutations needs a reference sequence that it can compare the sequence to. The alignment step requires a reference sequence to map against. A main caveat of many existing pipelines is the user's choice of reference sequence, since it is an arbitrary choice and there are many different reference sequences to choose from. Therefore, a dynamic approach that is sensitive enough for the segmented structure of the AIV genome is needed. The diversity of HA and NA segments' sequences is significant enough to make it challenging to map sequenced reads to a single, full-length influenza A reference sequence. Although this approach may be effective for the other six segments, the mapping software would frequently be unable to locate sufficient plausible matches for sequenced reads of HA and NA origin to continue with the analysis. By using a splitting approach that finds the best reference sequence from a database, the expensive assembly is avoided and mapping can be conducted. \\
+Compared to analyses with similarly large genomes such as SARS-CoV-2 and due to the segmented structure of the AIV genome, the mapped reads of the AIV sample should not be dismissed but kept for maintaining a reasonable high coverage for the further analyses. 
 
-For a detailed genetic analysis of the AIV genome, several consecutive steps are required after taking a sample from an infected host and sequencing it. NGS data need to be preprocessed in order to remove reads that are too short, have low base quality or include NGS platform-specific adapters that are ligated to the read ends and need to be trimmed.
+% For a detailed genetic analysis of the AIV genome, several consecutive steps are required after taking a sample from an infected host and sequencing it. NGS data need to be preprocessed in order to remove reads that are too short, have low base quality or include NGS platform-specific adapters that are ligated to the read ends and need to be trimmed.
 
-why mapping is good and not assembly:
-The diversity of HA and NA segments' sequences is significant enough to make it challenging to map sequenced reads to a single Influenza A reference sequence chosen by the user using a naive approach. Although this approach may be effective for the other six segments, the mapping software would frequently be unable to locate sufficient plausible matches for sequenced reads of HA and NA origin to continue with the analysis.
 
 \subsubsection{Requirements for FMDV Workflow}
+multisample, VAPOR, mapping (de novo assembly for control?)
 
 \section{Workflow Development}
 ''Reference-based genomic Surveillance'' (INSaFLU)
@@ -79,30 +75,23 @@ The diversity of HA and NA segments' sequences is significant enough to make it 
 Tiling amplicon approach for CaPV genome. Makes up 23 primer pairs for an amplicon size of 7.5 kb each instead of smaller sizes usually used in tiling amplicon protocols. (ref2.2.2)
 
 Workflow is composed of seven crucial steps:
-- preparing reference sequence for mapping (masking halves)
-- quality control
-- mapping
-- Filtering
-- merging
-- trimming
+- preparing reference sequence for mapping (masking halves) \\
+- quality control\\
+- mapping\\
+- Filtering\\
+- merging\\
+- trimming\\
 - consensus sequence construction
 
 CaPV genomes have the central coding region bounded by identical inverted terminal repeats,
 containing 156 putative genes. the repeat of the ITRs would make any mapping in these regions ambiguous.
 need to part the reads in two pools and do mapping in two parts: N-mask the reference (start and end by start/end position primers)
 
-\begin{figure}[H]
+\begin{figure}[ht!]
 	\includegraphics[width=1\textwidth]{media/pox.png}
 	\caption{Simplified Poxvirus PE reads iVar-based workflow.}
 	\label{fig:3-pox-wf}
 \end{figure}
-
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=0.97\textwidth]{media/3-pipelines-LSDV.pdf}
-% 	\caption{Simplified Poxvirus PE reads iVar-based workflow.}
-% 	\label{fig:3-pipelines-lsdv}
-% \end{figure}
 
 Efficiency: Assembly vs. Mapping; efficiency more details in discussion.
 
@@ -110,51 +99,29 @@ If the goal in a broad and rapid surveillance is a high number of sample through
 building index is expensive (BWT)
 
 \subsection{AIV Illumina Reads Workflow}
-We propose a fully automated pipeline for the analysis of Illumina-sequenced paired-end reads from influenza samples. The workflow is integrated in the Galaxy platform and available via \todo{link}. It is designed to take one input sample at a time and the outputs of the analysis steps can be used for further research based on the user's interest. The workflow is outlined in Figure~\ref{fig:3-aiv-wf}, where the nine main steps of the workflow are visualized. One upside of the workflow is the consideration of the different segments of the influenza virus genome. After uploading paired-end reads and a reference sequence database, which is available online too \todo{link}, the workflow is designed to build a hybrid reference from the given database for each of the segments of the genome. The reference sequence database consists of eight FASTA files, one per segment, containing numerous full-length sequences for a given segment. The provided database file consists of 56 sequences for each segment. If a user decides to upload their own references, it is important to follow the sequence identifier pattern: >\textit{segment\_name$\mid$influenza\_strain$\mid$subtype$\mid$accession\_number}. For example, one entry's identifier is >\textit{PB1$\mid$A/duck/Manitoba/1953$\mid$A/H10N7$\mid$KF435047.1} followed by the sequence. \\
-After (1) preprocessing of the reads with \texttt{fastp} to dismiss reads shorter than 30 basepairs and trimming read ends, the database of reference sequences is used to (3) find the closest possible reference for each of the segments. The tool \texttt{VAPOR} outputs a table with a scoring that comes from the graph construction, and should not be confused with the identity of the sequence compared to the reference. As \texttt{VAPOR} is running once per segment but has independent inputs, this step is executed in parallel. \texttt{VAPOR} is a graph-based classifier that maps k-mers to a weighted De Bruijn graph~\cite{southgate2020influenza}. Its benchmarking shows that it runs significantly faster than BLAST and default configuration leads to reasonable matches, as long as the given sample is not very different from or novel to the provided sequences in the database. \\
-Using the highest scoring sequences from the eight \texttt{VAPOR} runs, a hybrid reference sequence is built. To control the statistics of the graph and adapt the configuration, a table with the highest \texttt{VAPOR} scores of each run is generated. \\
-The hybrid reference sequence is composed of the eight segments and is used for (3) mapping with \texttt{BWA-MEM} (Burrow-Wheeler Aligner for short-read alignment)~\cite{li2013aligning}. 
+% explain SNPs
+We propose a fully automated pipeline for the analysis of Illumina-sequenced paired-end reads from avian influenza samples. The workflow is integrated in the Galaxy platform and available via \todo{link}. It is designed to take one input sample at a time and besides a summarising results report, the outputs of the analysis steps can be used for further research based on the user's interest. The workflow is outlined in Figure~\ref{fig:3-aiv-wf}, where the nine main steps of the workflow are visualised. The full workflow of 48 steps with the tools, tool version and paramters can be found in the Appendix, Table~\ref{tab:aiv-tools-steps}. \\
+One novelty of the workflow is the consideration of the different segments of the influenza virus genome. After uploading paired-end reads and a reference sequence database, which is available online too \todo{link}, the workflow is designed to build a hybrid reference from the given database for each of the segments of the genome. The reference sequence database consists of eight FASTA files, one per segment, containing numerous full-length sequences for a given segment. The provided database file consists of 56 sequences for each segment. If a user decides to upload their own references, it is important to follow the sequence identifier pattern: >\textit{segment\_name$\mid$influenza\_strain$\mid$subtype$\mid$accession\_number}. For example, one entry's identifier is >\textit{PB1$\mid$A/duck/Manitoba/1953$\mid$A/H10N7$\mid$KF435047.1} followed by the sequence. 
 
-48 distinct steps
-
-user can decide for size of phylogenetic trees (number of sequences to include from the next closer sequences -> measure by VAPOR scores, determines size of tree)
-
-consensus sequence per segment is included in the phylogenetic trees to visualize the taxonomy (spatial/temporal spread)
-
-upload list of FASTA files with a reference database for each influenza segment;
-
-Table~\ref{tab:aiv-tools-steps}
-
-\begin{figure}[H]
+\begin{figure}[ht!]
 	\includegraphics[width=0.95\textwidth]{media/aiv.png}
-	\caption{Simplified AIV Illumina reads iVar-based workflow.}
+	\caption{Simplified AIV workflow with the most important steps.}
 	\label{fig:3-aiv-wf}
 \end{figure}
 
-steps:
-(3) Mapping with BWA-MEM: preprocessed reads against hybrid reference, BAM output
-(4) Filter by quality and for paired and properly mapped reads
-(5) Consensus sequence construction (from BAM file with useful sequence names that include the segment name)
-(-) create an overview of the VAPOR scoring in form of a table, with the identifier names
-(6) Prokka from consensus sequences, for genome annotation (kingdom viruses)
-(7) Snipit to visualize and summarize SNPs relative to the hybrid reference, needs a multiple sequence alignment of the segments with MAFFT
-(8) IQ-Tree build phylogenetic tree from filtered reference database, size of the tree is determined by input, consensus sequences are renamed so they contain the segment name and the sample and outputs trees for HA and NA genes.
+After (1) preprocessing of the reads with \texttt{fastp} to dismiss reads shorter than 30 basepairs and automatic trimming PolyG tails of the Illumina reads, the database of reference sequences is used to (2) find the closest possible reference for each of the segments. The tool \texttt{VAPOR} outputs a table with a scoring based on the graph construction, and should not be confused with the identity of the sequence compared to the reference. As \texttt{VAPOR} is running once per segment but has independent inputs, this step is executed in parallel. \texttt{VAPOR} is a graph-based classifier that maps k-mers to a weighted De Bruijn graph~\cite{southgate2020influenza}. Its benchmarking shows that it runs significantly faster than BLAST and default configuration leads to reasonable matches similar to MASH, as long as the given sample is not very different from or novel to the provided sequences in the reference database. \\
+Using the highest scoring sequences from the eight \texttt{VAPOR} runs, a hybrid reference sequence is built. To control the statistics of the graph and adapt the configuration, a table with the highest \texttt{VAPOR} scores of each run is generated. \\
+The hybrid reference sequence is composed of the eight segments and is used for the third step of the pipeline, (3) mapping with \texttt{BWA-MEM} (Burrow-Wheeler Aligner for short-read alignment). The segment names in the hybrid reference genome are truncated and shortened to just the segment identifier. Mapping of the preprocessed reads against the prepared hybrid reference is run with default parameters of \texttt{BWA-MEM}. The \texttt{BWA-MEM} algorithm aligns 70-1000 basepairs long reads by seeding alignments with maximal exact matches, and extending the seeds using the affine-gap Smith-Waterman algorithm~\cite{li2013aligning}. After mapping, the resulting BAM dataset is (4) quality filtered using \texttt{Samtools view}. Reads with a minimum quality of 20 and those that are paired and mapped in a proper pair are kept. The alignment and quality results as well as coverage statistics for each segment are reported using \texttt{QualiMap BamQC}. \\
+The subsequent steps before generating the consensus sequence of the sample prepare the BAM file and deconstruct the mapped reads into a collection of eight datasets and relabel the elements, so that (5) \texttt{iVar consensus} can perform consensus sequence construction in parallel. 
+Per-segment consensus construction is run with a minimum quality score threshold of 20, minimum frequency threshold of 0.7, minimum depth to call consensus of 10, does not exclude regions with smaller depth than the minimum threshold and uses N instead of - for regions with less than the minimum coverage. These settings accept any base as the consensus base for a genome position with a base calling quality of 20 or higher in order to avoid false bases that come from sequencing errors. If there is no consensus base to be found with the above thresholds, an N is inserted instead. \\
+The next step using the consensus sequence is (6) generating genome annotation files with \texttt{Prokka}. As the input sample is a viral genome, the \textit{Kingdom} parameter is set to \textit{Viruses}. With the output \textit{.faa}-file, further downstream lookups and analyses can be started. \\
+To place the consensus sequence of the avian influenza segments in a set of samples frm the reference sequences, (7) a multiple sequence alignment for a user-specified number of sequences (i.e. determines the size of the resulting phylogenetic trees) is conducted with \texttt{MAFFT} and the consensus sequence is added using \texttt{MAFFT add}. The multiple sequence alignment is also used for (8) a visualisation of SNPs, produced with the \texttt{snipit} tool. \\
+As a final step, (9) phylogenetic trees for the HA and NA segments are built using \texttt{IQ-Tree}. The taxonomy of the sample segments visualised in the phylogenetic trees give insight into spatial and temporal spread of the genome. \\
+The presented workflow avoids the computationally expensive de novo assembly, instead uses a mapping approach with a dynamically composed reference sequence of close sequences for each of the eight influenza segmets. This accounts for a high quality mapping and is evaluated in Chapter~\ref{sec:4-aiv}. To control and look up intermediate outputs, quality reports are emitted during the workflow process and after finishing, can be downloaded as a PDF for each workflow run. \\
+Due to a variety of possible downstream analyses that can be of the user's interest, the pipeline provides intermediate results of the individual steps so that they can be used with other tools. An overview of these outputs with their datatype is provided in Table~\ref{tab:aiv-outputs}. Possible downstream analyses are discussed in Chapter~\ref{chap:discussion}.
 
-Overview of outputs in a table with datatypes
-(1) Quality and coverage report of alignment
-(2) VAPOR scores in a table
-(3) Genome annotation file
-(4) snipit SNP plots for HA and NA genes
-(5) IQ-Trees for HA and NA genes
-
-Kraken2 vs. VAPOR;
-Efficiency: LoFreq vs. iVar consensus; both consensus identification methods using the same site-specific depth threshold
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=0.97\textwidth]{media/3-pipelines-AIV.pdf}
-% 	\caption{Simplified AIV ARTIC PE reads iVar-based workflow.}
-% 	\label{fig:3-pipelines-aiv}
-% \end{figure}
+% Kraken2 vs. VAPOR;
+% Efficiency: LoFreq vs. iVar consensus; both consensus identification methods using the same site-specific depth threshold
 
 \subsection{FMDV Illumina Amplicon Workflow}
+multisample, VAPOR, mapping (de novo assembly for control?)
