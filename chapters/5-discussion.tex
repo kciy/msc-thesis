@@ -1,31 +1,38 @@
 \chapter{Discussion}\label{chap:discussion}
 
 \section{Contribution to the Field}
+Workflows that solve common problems, provide useful information, are user-friendly, customisable, extendable
+
 single sample vs. multi sample (reality check, what is needed?) \\
 further pox viruses, pipelines can be more or less easily applied/adjusted \\
 limitations \\
-LSDV interesting for all poxviruses and adjustable due to ITR and tiled-amplicon approach \\
-AIV downstream - everything is possible. Highlight key minor assets that indicate adaption to mammals -> databases needed to check against, detect mutation of isolates? \\
+\ac{LSDV} interesting for all poxviruses and adjustable due to \acp{ITR} and tiled-amplicon approach \\
+\ac{AIV} downstream - everything is possible. Highlight key minor assets that indicate adaption to mammals -> databases needed to check against, detect mutation of isolates? \\
 Generally: annotate on amino acid layer (most information) \\
 
 Make phylogenetic trees publicly accessible, not one sample per strain but in high resolution and greater details, strains from different countries,
 
-''The high sensitivity of the NGS technology ensures that major kinds of viral pathogens in mixed samples can be detected.''
-One strength of NGS is that it can be used to detect emerging viral diseases with a high genetic variation. Like AIV. Since it can analyse a full sequence instead of targeting a specifig gene. -> makes sense to use virus-specific primers for PCR or NGS 
+''The high sensitivity of the \ac{NGS} technology ensures that major kinds of viral pathogens in mixed samples can be detected.''
+One strength of \ac{NGS} is that it can be used to detect emerging viral diseases with a high genetic variation. Like \ac{AIV}. Since it can analyse a full sequence instead of targeting a specifig gene. -> makes sense to use virus-specific primers for \ac{PCR} or \ac{NGS} 
 
-''Comparison of the whole genome sequences of recent LSDV isolates from the 2015–2016 epidemic in southern Europe revealed only a limited number of point mutations between the isolates'' WGS is essential to capture all genetic variation at once
+''Comparison of the whole genome sequences of recent \ac{LSDV} isolates from the 2015–2016 epidemic in southern Europe revealed only a limited number of point mutations between the isolates'' \ac{WGS} is essential to capture all genetic variation at once
 
-In sequencers, falso positive variants (FPV) must be avoided (happens when too many amplifiation cycles are made)
+In sequencers, falso positive variants (\ac{FPV}) must be avoided (happens when too many amplifiation cycles are made)
+
+% Efficiency: Assembly vs. Mapping; efficiency more details in discussion.
+
+% If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time senstive. The presented pipeline could be used in a broad context for the use in many laboraties.
+% building index is expensive (BWT)
 
 \section{Future Directions}
-further validation and improvement of the developed pipelines, expansion to other viral livestock diseases, integration with existing surveillance systems; expand the VETLAB network to entitle even more professionals to professionally analyse their samples.
+further validation and improvement of the developed pipelines, expansion to other viral livestock diseases, integration with existing surveillance systems; expand the \ac{VETLAB} network to entitle even more professionals to professionally analyse their samples.
 
-AIV workflow offers many possible directions for downstream analysis:
+\ac{AIV} workflow offers many possible directions for downstream analysis:
 
 * consensus sequence for each segment -> compare consensus sequence to others can help identify outbreaks and patterns of transmission, get more insights how the virus spreads and its evolution
 * Prokka annotation file. Predict the protein coding regions of the virus, to understand the function of the viral proteins and how they interact with host cells
 * SNPs relative to the reference sequence
-* MSA and phylogenetic tree for broad or detailed phylolgenetic analysis and understand evolutionary relationships between the sample and other strains. could also use clusters or subtypes within the sample. make trees available so that new isolates can be immediately arranged
+* \ac{MSA} and phylogenetic tree for broad or detailed phylolgenetic analysis and understand evolutionary relationships between the sample and other strains. could also use clusters or subtypes within the sample. make trees available so that new isolates can be immediately arranged
 * more visualisation of the data
 
 * long-term objective: build public high-resolution databases to enable researchers to detect mutation of an isolate. this is crucial for a global surveillance system to work.
