@@ -38,20 +38,50 @@ During bioinformatics analysis steps using algorithms with computationally expen
 Each application of software with \ac{NGS} data requires expertise in resolving limitations and drawbacks of specific methods. This in turn requires skills and experience in the field and the careful interpretation of results. Still, \ac{NGS} provides a large pool of methods which eases this task, although available algorithms for genome assembly and amplicon analysis have drawbacks and limitations~\cite{finotello2012comparative}.
 
 \section{Tools for Genomic Analysis with NGS Data}
-\todo{write}
-* preprocessing (trimmomatic, fastp, fastqc) -> quality reporting \\
-* aligner (BWA-MEM, Medaka, minimap2, Bowtie2) \\
-* mutation detection, annotation (FreeBayes, Medaka, bcftools, SnpEff) \\
-* consensus sequence generation (ivar, Medaka) \\
-* coverage analysis (bedtools, deepTools) \\
-* alignments (MAFFT) \\
-* de novo assembler (SPAdes) \\
-* phylogenetic trees (FastTree, IQ-Tree, PhyloCanvas) \\
-* closest sequence (BLAST, VAPOR) \\
-* variant caller (lofreq, Medaka)
+\todoit
+% * preprocessing (trimmomatic, fastp, fastqc) -> quality reporting \\
+% * aligner (BWA-MEM, Medaka, minimap2, Bowtie2) \\
+% * mutation detection, annotation (FreeBayes, Medaka, bcftools, SnpEff) \\
+% * consensus sequence generation (ivar, Medaka) \\
+% * coverage analysis (bedtools, deepTools) \\
+% * alignments (MAFFT) \\
+% * de novo assembler (SPAdes) \\
+% * phylogenetic trees (FastTree, IQ-Tree, PhyloCanvas) \\
+% * closest sequence (BLAST, VAPOR) \\
+% * variant caller (lofreq, Medaka)
+
+A variety of suites and software packages is available to process NGS-generated data. Depending on the user's reasearch interest and procedures, tools are used independently or subsequently. Pursuing the goal to construct the full-length genome from short NGS-sequenced raw reads in FASTQ format, the text-based format to represent nucleotide sequences with quality scores for each base serves as the primary input for any analysis steps. For the central steps of the bioinformatics pipelines described in \secref{sec:2-pox-pipelines}, \secref{sec:2-aiv-pipelines}, \secref{sec:2-general-pipelines} and importantly the newly designed pipelines in \secref{sec:pox-wf} and \secref{sec:aiv-wf} \todo{add FMDV?}, tools and software suites are presented in the following.
+
+\subsubsection*{Preprocessing -- fastp, Trimmomatic}
+fastp is 2-5 times faster than Trimmomatic or Cutadapt \\
+Trimmomatic requires separate file with adapters
+
+\subsubsection*{Classification of Reads -- VAPOR, BLASTn}
+\cite{southgate2020influenza}
+\cite{altschul1997gapped} % BLASTn, using the NCBI BLAST+ blastn command line tool
+
+\subsubsection*{Reference-based Alignment -- BWA-MEM}
+minimap2 for ONT/PacBio/Illumina \\
+for >100bp length Illumina reads, minimap2 is 3x faster as BWA-MEM/Bowtie2 (same accuracy) \\
+Bowtie2 for higher coverage contigs?\\
+\cite{li2013aligning}
+
+\subsubsection*{De novo Assembler -- SPAdes}
+% depends on reads lengths
+% Flye for ONT/PacBio
+\cite{bankevich2012spades}
+
+\subsubsection*{Consensus Calling -- iVar consensus}
+% medaka consensus tool for ONT
+% bcftools consensus (needs VCF)
+% iVar takes aligned BAM file
+\cite{grubaugh2019amplicon}
+
+\subsubsection*{Phylogenetic Tree Construction -- IQ-Tree} %FastTree for max.likelihood
+\cite{minh2020iq}
 
 \section{Poxvirus Analysis}\label{sec:2-pox}
-In the following, current approaches to analyse \ac{NGS} data of poxviruses are described. To get into the topic, the characteristics of poxviruses are examined.
+Among the family of poxviruses, there are some diseases that circulate in livestock and pose a risk so that they are on the list of notifiable animal diseases. Among others, monkeypox, sheeppox and goat pox are the diseases of concern. In the following, characteristics of poxviruses and current approaches to analyse \ac{NGS} data of poxviruses are described.
 
 \subsection{Poxviruses}
 Throughout human history, poxviruses have played a significant role with variola being the most notorious as it is the causative agent of smallpox. Smallpox has been described in Chinese texts dating back to the 4th Century AD, and evidence of pox-like scars found on Egyptian mummies suggests the disease may have existed as far back as the 2nd millennium BC~\cite{fenner1988history}. The discovery of a vaccine for smallpox made it the first disease to be eradicated by human efforts, and variola was the first human virus to be successfully eliminated~\cite{fenner2000adventures}. Modern vaccinology owes its origins to Edward Jenner's discovery in the late 18th century that zoonotic infections with the ''cowpox virus'' provided immunity to smallpox~\cite{fenner1988history}. Furthermore, vaccinia virus, which is now used for smallpox vaccination, was the first animal virus to be observed using electron microscopy and the first to be utilized as a vector for transporting foreign genes into animals. This is why poxviruses are among the best-known viruses. \\
@@ -122,7 +152,7 @@ Symptoms of severe illness are characterised by influenza-like signs such as fev
 Influenza A strains are the most virulent virus species, and have caused all major historic flu outbreaks through reassortment. Subtypes H5, H7 and H9 are responsible for the largest outbreaks of \ac{AIV} that also spread to humans~\cite{widdowson2017global}. The first confirmed report of human infection with an animal avian influenza virus dates to 1958, and since then 16 subtypes have been detected in humans~\cite{kluska1961demonstration}. Zoonotic spillover events have becomeincreasingly common since the early 20th century and have led to major endemics such as a huge H5 outbreak in the U.S. in 2014-2015. It resulted in more than 25 million bird deaths~\cite{seeger2021poultry}. Another current outbreak, resulting in more than 58 million dead birds and costs of around 661 million U.S. dollars began in 2022 and is spreading across the U.S.~\cite{usda2023hpai}. 
 Vaccination against \ac{HPAI} in poultry are used worldwide to ward off avian influenza. They also serve as a preventive measure in the event of an outbreak to reduce the risk of introducing the virus into poultry populations~\cite{swayne2013current, swayne2011assessment}. 
 
-\subsection{Pipelines for Genomic Analysis with Avian Influenza Virus NGS Data}
+\subsection{Pipelines for Genomic Analysis with Avian Influenza Virus NGS Data}\label{sec:2-aiv-pipelines}
 Surveillance systems in the field of genotyping emerging viral strains include classical phylogenetic methods far classifying viral strains, assessing tree topologies, distinguishing between novel and emerging strains, and discovering novel disease-causing variants~\cite{koboldt2013next}. These analyses are essential given the high genetic variability of the genome, and since it consists of eight segments, specific bioinformatics workflows are required for the analysis. \\
 The challenge in identifying subtypes and detecting variants lies in the diversity of \ac{HA} and \ac{NA} genes, the main targets of the host immune response. The \ac{HA} and \ac{NA} genes have evolved into several subfamilies and require a dynamic reference selection approach for sequencing analysis. There are a growing number of web platforms, suites and pipelines that enable the analysis of influenza-specific samples with \ac{NGS} data and resources for further analysis, e.g. Influenza Research Database/Fludb~\cite{zhang2017influenza}, EpiFLU/GISAID~\cite{shu2017gisaid}, Nextflu~\cite{neher2015nextflu}, NCBI Influenza Virus Resource~\cite{bao2008influenza}, FluNet~\cite{flahault1998flunet} and OpenFluDB~\cite{liechti2010openfludb}. Many existing suites for automated analysis of influenza samples are based on \ac{SARS-CoV-2} research and have been adapted for the similarly large influenza genome. \ac{INSaFLU} and \ac{PAIVS} are two pipelines specifically designed for the analysis of \ac{NGS}-generated (avian) influenza samples and are discussed in more detail below.
 
@@ -146,7 +176,7 @@ high heterogenity of the virus in the host populations --> \ac{WGS}  needed for 
 
 * https://assets.researchsquare.com/files/rs-2396402/v1/7ab80566-9e56-40a3-8117-07191dbcf2a9.pdf?c=1672243503 mapping with Bowtie2, samtools, variants calling (Mutect2), SnpEff for annotation, phylogenetic analysis. GATK4 pipeline
 
-\section{General Pipelines for Genomic Analysis with Viral NGS Data}
+\section{General Pipelines for Genomic Analysis with Viral NGS Data}\label{sec:2-general-pipelines}
 In the following, pipelines are presented that can be used with unspecified or unknown virus data. They cover some general parts of the previously mentioned pipelines but focus mainly on virus discovery, assembly and consensus sequence generation. \\
 ViReflow is a pipeline for viral consensus sequence generation and provides a mapping-based approach to variant calling and many optional downstream analyses such as de novo assembly and lineage assignment~\cite{moshiri2022vireflow}. The pipeline is based on the Reflow suite, and all computations run in an \ac{AWS} container in a cloud. Reflow emphasises versioning, testing and workflow sharing and does not provide a user-friendly web interface. Instead, it is accessible via a command-line interface. As a result, it may not be as easy to use as Galaxy and its workflows, including workflow development, as this requires programming in Go language. Similar to other pipelines, ViReflow was originally created for the consensus genome construction of \ac{SARS-CoV-2} samples and has been extended for use with all viral genomes~\cite{moshiri2022vireflow}. \\
 Another automated pipeline for viral genome assembly, lineage assignment, mutation and intra-host variant detection is V-Pipe, a computational pipeline assessing genetic diversity and introducing a new alignment method \textit{ngshmmalign} specifically for small and highly diverse viral genomes. It includes local and global haplotype reconstruction and a module for detection of flow cell cross-contamination~\cite{posada2021v}. Although V-Pipe is suitable for all viral genomes, it was tested for the identification of the eight influenza segments and successfully identified them from the test sample. \\
