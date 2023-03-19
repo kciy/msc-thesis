@@ -19,7 +19,7 @@ The platform is continuously enhanced, and it still attracts around 2,000 new us
 which problems should the pipeline solve?
 For a detailed genetic analysis of the \ac{AIV} genome, several consecutive steps are required after taking a sample from an infected host and sequencing it. \ac{NGS} data need to be preprocessed in order to remove reads that are too short, have low base quality or include \ac{NGS} platform-specific adapters that are ligated to the read ends and need to be trimmed.
 
-what is ''ampliconic'' sequence analysis? -> amplicon is the region of \ac{DNA}/\ac{RNA} of interest, using primers during \ac{PCR} to bind to these regions (define the boundaries) at both ends. \ac{DNA} polymerase enzymes extend the primers and synthesise new strands
+what is ``ampliconic'' sequence analysis? -> amplicon is the region of \ac{DNA}/\ac{RNA} of interest, using primers during \ac{PCR} to bind to these regions (define the boundaries) at both ends. \ac{DNA} polymerase enzymes extend the primers and synthesise new strands
 
 ARTIC Illumina-sequenced data
 
@@ -34,7 +34,7 @@ tested workflow, includes minimal steps:
 * Consensus Sequence Construction \\
 
 Plus Variant Calling and genome annotation; \\
-Plus phylogenetic ranking ''to assign a \ac{SARS-CoV-2} genome sequence the most likely lineage based on a chosen nomenclature system'' (Pangolin)
+Plus phylogenetic ranking ``to assign a \ac{SARS-CoV-2} genome sequence the most likely lineage based on a chosen nomenclature system'' (Pangolin)
 
 \begin{figure}[H]
 	\centering
@@ -57,7 +57,7 @@ Compared to analyses with similarly large genomes such as \ac{SARS-CoV-2} and du
 multisample, VAPOR, mapping (de novo assembly for control?)
 
 \section{Workflow Development}
-''Reference-based genomic Surveillance'' (\ac{INSaFLU})
+``Reference-based genomic Surveillance'' (\ac{INSaFLU})
 
 \subsection{Poxvirus Illumina Amplicon Workflow}\label{sec:pox-wf}
 The proposed Galaxy workflow for poxvirus samples that were \ac{HTS}-sequenced with a tiling amplicon approach is available on the WorkflowHub, Dockstore and Galaxy EU~\todo{links}. It aims at constructing the full genome from Illumina-sequenced reads and providing alignment files, the constructed consensus sequence and intermediate results and reports that give insights into reads and mapping quality and mapping coverage. A table with these outputs and the respective datatypes is provided in Supplementary~\tabref{tab:pox-outputs}. \\
