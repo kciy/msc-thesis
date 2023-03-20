@@ -10,18 +10,21 @@ The Galaxy community is thriving, with over 124,000 users who also contribute to
 Galaxy workflows are a key feature that allow the user to stack tools in a chain and to configure them so that the workflow user only has to upload his or her data for the input fields. The automation of tools in a chain is used for modular, longer analyses that are executed repeatedly. \\
 Workflows that are available on and accepted by the Intergalactic Workflow Commission (IWC; \url{https://github.com/galaxyproject/iwc}) are conform with the community's best practise standards and tested on the latest Galaxy release. Dockstore and WorkflowHub automatically publish the \acs{IWC} workflows and guarantee the availability in a Docker-based environment on Dockstore~\cite{o2017dockstore} and on the workflow collaboratory WorkflowHub~\cite{goble2021implementing}.
 
-Important contributions of Galaxy, as stated by the Galaxy Community (2022), include Vertebrate Genome Project assembly workflows and collaborations on \ac{SARS-CoV-2} research. Another toolkit leveraged in Galaxy is Galaxy-ML, a set of tool that provides a suite for analyses based on machine learning. With growing publicity, more topics are covered by and moved to Galaxy. It has contributed to over 5,700 scientific publications and has many tutorials available for researchers to use. Training material and ready-to-use workflows facilitate professionals and beginners in the field to use Galaxy for their research purposes.
-
-The platform is continuously enhanced, and it still attracts around 2,000 new users every month, indicating the quality and significance of the project. The team and infrastructure of Galaxy initially come from the Nekrutenko lab in the Center for Comparative Genomics and Bioinformatics at Penn State, the Taylor lab at Johns Hopkins University, and the Goecks Lab at Oregon Health \& Science University. All of these organisations have contributed significantly to the success of Galaxy. There are 138 public servers available worldwide as of 2023, while the most prominent general-purpose server instances are hosted by teams at University of Freiburg, Germany (for \href{https://usegalaxy.eu/}{UseGalaxy.eu}), Texas Advanced Computing Center (for \href{https://usegalaxy.org/}{UseGalaxy.org}) and Genomics Virtual Laboratory, formerly at the University of Queensland (for \href{https://usegalaxy.org.au/}{UseGalaxy.org.au}). These main public servers are synchronised in their tools and set of reference tools~\cite{10.1093/nar/gkac247}.
+Important contributions of Galaxy, as stated by the Galaxy Community (2022), include Vertebrate Genome Project assembly workflows and collaborations on \ac{SARS-CoV-2} research. Another toolkit leveraged in Galaxy is Galaxy-ML, a set of tools that form a suite for analyses based on machine learning. With growing publicity, more topics are covered by and moved to Galaxy. It has contributed to over 5,700 scientific publications and has many tutorials available for researchers to use. Training material and ready-to-use workflows facilitate professionals and beginners in the field to use Galaxy for their research purposes. \\
+The Galaxy platform is continuously enhanced, and it still attracts around 2,000 new users every month, indicating its quality and significance. The team and infrastructure of Galaxy initially come from the Nekrutenko lab in the Center for Comparative Genomics and Bioinformatics at Penn State, the Taylor lab at Johns Hopkins University, and the Goecks Lab at Oregon Health \& Science University. All of these organisations have contributed significantly to the success of Galaxy. There are 138 public servers available worldwide as of 2023, while the most prominent general-purpose server instances are hosted by teams at University of Freiburg, Germany (for \href{https://usegalaxy.eu/}{UseGalaxy.eu}), Texas Advanced Computing Center (for \href{https://usegalaxy.org/}{UseGalaxy.org}) and Genomics Virtual Laboratory, formerly at the University of Queensland (for \href{https://usegalaxy.org.au/}{UseGalaxy.org.au}). These main public servers are synchronised in their tools and set of reference tools~\cite{10.1093/nar/gkac247}.
 
 \section{Workfow Requirements}
-\todoit
-which problems should the pipeline solve?
-For a detailed genetic analysis of the \ac{AIV} genome, several consecutive steps are required after taking a sample from an infected host and sequencing it. \ac{NGS} data need to be preprocessed in order to remove reads that are too short, have low base quality or include \ac{NGS} platform-specific adapters that are ligated to the read ends and need to be trimmed.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{media/3-general.jpg}
+	\caption{A general bioinformatical pipeline for genomic analysis of raw reads.} 
+	\label{fig:3-general-wf}
+\end{figure}
 
-what is ``ampliconic'' sequence analysis? -> amplicon is the region of \ac{DNA}/\ac{RNA} of interest, using primers during \ac{PCR} to bind to these regions (define the boundaries) at both ends. \ac{DNA} polymerase enzymes extend the primers and synthesise new strands
+Genomic analysis of a genome requires several sequential steps after taking a sample from an infected host and sequencing it. An abstract pipeline for the genomic analysis from reads to consensus sequence and phylogenetic trees is depicted in~\figref{fig:3-general-wf}. \ac{NGS} data need to be preprocessed in order to remove reads that are too short, have low base quality or include \ac{NGS} platform-specific adapters that are ligated to the read ends and need to be trimmed. Next, the reads are aligned so the genome sequence can be studied on a per-base level. Alignment algorithms 
 
-ARTIC Illumina-sequenced data
+
+
 
 \ac{SARS-CoV-2} Pipeline as Baseline. \\
 (annotated) variants are of interest \\
@@ -36,16 +39,9 @@ tested workflow, includes minimal steps:
 Plus Variant Calling and genome annotation; \\
 Plus phylogenetic ranking ``to assign a \ac{SARS-CoV-2} genome sequence the most likely lineage based on a chosen nomenclature system'' (Pangolin)
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{media/general.jpg}
-	\caption{General workflow for the consensus genome construction and analysis of paired-end reads.} 
-	\label{fig:3-general-wf}
-\end{figure}
-
 \subsubsection{Requirements for Poxvirus Workflow}
 \todo{use ARTIC data}
-As explained in~\secref{sec:2-pox}, the genome of most poxviruses is bound by identical sequences located at the termini of the genome. It is shown that the size of such differs for some poxviruses, such as rabbitpox and vaccinia virus, while monkeypox, cowpox and capripoxviruses have shorter \acp{ITR}~\cite{wittek1978inverted}. For a whole-genome reconstruction from \ac{HTS}-generated reads, alignment algorithms look for the unambiguous location of a read. Since this is impossible for repeated sequences neither for reference-based mapping approaches nor de-novo assembly, a new approach has to be used that splits the sequencing reads into two parts, separating the identical sequences and running alignment algorithms for each of the splits. To build the full-length genome, the alignments need to be ``glued'' together. This approach requires the reads to be sequenced in two pools with two libraries. A similar protocol has been described by Mathijs et al.~\cite{mathijs2022robust}. \\
+As explained in~\secref{sec:2-pox}, the genome of most poxviruses is bound by identical sequences located at the termini of the genome. It is shown that the size of such differs for some poxviruses, such as rabbitpox and vaccinia virus, while monkeypox, cowpox and capripoxviruses have shorter \acp{ITR}~\cite{wittek1978inverted}. For a whole-genome reconstruction from \ac{HTS}-generated reads, alignment algorithms look for the unambiguous location of a read. Since this is impossible for repeated sequences neither for reference-based mapping approaches nor \textit{de novo} assembly, a new approach has to be used that splits the sequencing reads into two parts, separating the identical sequences and running alignment algorithms for each of the splits. To build the full-length genome, the alignments need to be ``glued'' together. This approach requires the reads to be sequenced in two pools with two libraries. A similar protocol has been described by Mathijs et al.~\cite{mathijs2022robust}. \\
 Other requirements for a reference-based surveillance of the genomics of poxviruses include the availability of the primer scheme that was used for amplicon-based sequencing. The \ac{BED} file containing the primers, their positions and the pool identifier is essential for the correct linking of the alignments when splitting the pipeline into two parts and merging it back together.
 
 \subsubsection{Requirements for AIV Workflow}
@@ -57,6 +53,7 @@ Compared to analyses with similarly large genomes such as \ac{SARS-CoV-2} and du
 multisample, VAPOR, mapping (de novo assembly for control?)
 
 \section{Workflow Development}
+\todoit
 ``Reference-based genomic Surveillance'' (\ac{INSaFLU})
 
 \subsection{Poxvirus Illumina Amplicon Workflow}\label{sec:pox-wf}
@@ -74,7 +71,7 @@ The workflow is designed to process multiple samples in one run, thus the sample
 
 \subsection{AIV Illumina Reads Workflow}\label{sec:aiv-wf}
 % explain SNPs
-We propose a fully automated pipeline for the analysis of Illumina-sequenced paired-end reads from avian influenza samples. The workflow is integrated in the Galaxy platform and available via \todo{link}. It is designed to take one input sample at a time and besides a summarising results report, the outputs of the analysis steps can be used for further research based on the user's interest. The workflow is outlined in~\figref{fig:3-aiv-wf}, where the nine main steps of the workflow are visualised. The full workflow of 48 steps with the tools, tool version and paramters can be found in Supplementary~\tabref{tab:aiv-tools-steps}. \\
+We propose a fully automated pipeline for the analysis of Illumina-sequenced paired-end reads from avian influenza samples. The workflow is integrated in the Galaxy platform and available via \todo{link}. It is designed to take one input sample at a time and besides a summarising results report, the outputs of the analysis steps can be used for further research based on the user's interest. The workflow is outlined in~\figref{fig:3-aiv-wf}, where the nine main steps of the workflow are visualised. The full workflow of 48 steps with the tools, tool version and parameters can be found in Supplementary~\tabref{tab:aiv-tools-steps}. \\
 One novelty of the workflow is the consideration of the different segments of the influenza virus genome. After uploading paired-end reads and a reference sequence database, which is available online too \todo{link}, the workflow builds a hybrid reference from the given database for each of the segments of the genome. The reference sequence database consists of eight FASTA files, one per segment, containing numerous full-length sequences for a given segment. The provided database file consists of 56 sequences for each segment. If a user decides to upload their own references, it is important to follow the sequence identifier pattern so that the extraction of sequence identifiers works: >\textit{segment\_name$\mid$influenza\_strain$\mid$subtype$\mid$accession\_number}. For example, one entry's identifier is >\textit{PB1$\mid$A/duck/Manitoba/1953$\mid$A/H10N7$\mid$KF435047.1} followed by the sequence in the next line. 
 
 \begin{figure}[ht!]
