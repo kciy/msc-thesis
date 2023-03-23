@@ -187,7 +187,7 @@
 \usetikzlibrary{arrows}
 	% ------------------- marker commands -------------------
     % ToDo command
-    \newcommand{\todoit}[0]{\textbf{\textcolor{red}{TODO}}\refstepcounter{todos}\label{todo \thetodos}}
+    \newcommand{\todoit}[0]{\textbf{\textcolor{red}{TODO \\}}\refstepcounter{todos}\label{todo \thetodos}}
     \newcommand{\todo}[1]{\textbf{\textcolor{red}{TODO: #1}}\refstepcounter{todos}\label{todo \thetodos}}
 	\newcommand{\extend}[1]{\textbf{\textcolor{darkgreen}{(EXTEND: #1)}}\refstepcounter{extends}\label{extend \theextends}}
 	% Lighter color to note down quick drafts
