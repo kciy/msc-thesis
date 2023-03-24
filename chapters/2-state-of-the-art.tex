@@ -71,29 +71,29 @@ Throughout human history, poxviruses have played a significant role with variola
 The family of poxviruses, \textit{Poxviridae}, is a family of double-stranded \ac{DNA} viruses. Its natural hosts are vertebrates and arthropods and there are currently 83 species within 22 genera in this family. The \textit{Poxviridae} family is divided into two subfamilies, \textit{Entemopoxvirinae} (insect-infecting viruses) and \textit{Chordopoxvirinae} (vertebrate-infecting viruses). \\
 Historically, poxviruses were classified based on disease symptoms and the animal species that was infected. Humans, cows, sheep, goats, horses and pigs have been studied to determine not only clinical symptoms but with the aim to classify poxviruses. This genus classification has been confirmed by recent comparative genome analysis~\cite{gubser2004poxvirus}. Symptoms of disease caused by a poxvirus infection are skin lesions that can differ in size. Depending on the type of poxvirus, the papules can vary from small and pearly papules in infections of \ac{LSDV} to larger crusts and spread generalised pustules in infections with the variola virus. Other general symptoms include fever, headache and rash.
 
-\renewcommand{\arraystretch}{1.4}
-\begin{table}[ht!]
+\begin{table}[H]
+	\centering
 	\begin{tabular}{lll}
-	\hline
-	\textbf{Genus}      & \textbf{Virus Species}                          & \textbf{Natural Hosts}                      \\ \hline
+	\toprule
+	\textbf{Genus}      & \textbf{Virus Species}                          & \textbf{Natural Hosts}                      \\ \midrule
 	Avipoxvirus         & Canarypox virus                                 & Songbirds 									\\ 
-						& Fowlpox virus                                   & Chickens, turkeys                           \\ \hline
+						& Fowlpox virus                                   & Chickens, turkeys                           \\ \midrule
 	Capripoxvirus       & Sheeppox virus                                  & Sheep                                       \\
-	                    & Lumpy skin disease virus                        & Cattle                                      \\ \hline
-	Centapoxvirus       & Yokapox virus\textsuperscript{1}                & Humans, mosquitoes                          \\ \hline
-	Cervidpoxvirus      & Deerpox virus                                   & Deer                                        \\ \hline
-	Crocodylidpoxvirus  & Crocodilepox virus                              & Crocodiles                                  \\ \hline
-	Leporipoxvirus      & Myxoma virus                                    & Rabbits, hares                              \\ \hline
-	Molluscipoxvirus    & Molluscum contagiosum virus\textsuperscript{1}  & Humans, primates, birds, dogs               \\ \hline
+	                    & Lumpy skin disease virus                        & Cattle                                      \\ \midrule
+	Centapoxvirus       & Yokapox virus\textsuperscript{1}                & Humans, mosquitoes                          \\ \midrule
+	Cervidpoxvirus      & Deerpox virus                                   & Deer                                        \\ \midrule
+	Crocodylidpoxvirus  & Crocodilepox virus                              & Crocodiles                                  \\ \midrule
+	Leporipoxvirus      & Myxoma virus                                    & Rabbits, hares                              \\ \midrule
+	Molluscipoxvirus    & Molluscum contagiosum virus\textsuperscript{1}  & Humans, primates, birds, dogs               \\ \midrule
 	Orthopoxvirus       & Variola virus (Smallpox)                        & Humans (eradicated)                         \\ 
 						& Mpox virus\textsuperscript{1}                   & Humans, primates                            \\ 
 						& Cowpox virus\textsuperscript{1}                 & Humans, cats, cows, elephants               \\ 
 						& Vaccinia virus\textsuperscript{1}               & Humans, cattle, buffalos, rabbits           \\ 
-						& Camelpox virus                                  & Camels                                      \\ \hline
+						& Camelpox virus                                  & Camels                                      \\ \midrule
 	Parapoxvirus        & Pseudocowpox virus\textsuperscript{1}           & Humans, cattle                              \\ 
-						& Orf virus\textsuperscript{1}                    & Humans, sheep, goats, etc.                  \\ \hline
-	Suipoxvirus         & Swinepox virus                                  & Pigs                                        \\ \hline
-	Yatapoxvirus        & Yaba monkey tumour virus\textsuperscript{1}     & Humans, rhesus monkeys                      \\ \hline
+						& Orf virus\textsuperscript{1}                    & Humans, sheep, goats, etc.                  \\ \midrule
+	Suipoxvirus         & Swinepox virus                                  & Pigs                                        \\ \midrule
+	Yatapoxvirus        & Yaba monkey tumour virus\textsuperscript{1}     & Humans, rhesus monkeys                      \\ \bottomrule
 	\textsuperscript{1} Zoonotic disease &                                &                                             \\
 	\end{tabular}
 	\caption{Representative viruses from ten Chordopoxvirus genera.}
@@ -153,5 +153,5 @@ Efforts with next-generation sequencing data are made to reconstruct the viral g
 
 \subsection{Pipelines for Genomic Analysis with Foot-and-Mouth Disease Virus NGS Data}
 Genomic analysis of \ac{FMDV} samples gives valuable insights, and may help understand transmission routes and mutations. The analyses can vary depending on the specific objective and typically consist of several subsequent steps, starting with sequenced reads from the sample. However, there are no such ready-to-use pipelines available. Protocols that exactly describe the single steps used for genomic analysis are rare and highly depend on the input data. \\
-One protocol by Munir et al. working with Illumina-sequenced data describes a \ac{GATK}4 pipeline to run on a local machine~\cite{munir2022whole}. Its preprocessing step includes quality checks with \texttt{MultiQC} and trimming with \texttt{fastp}. Mapping is performed using \texttt{Bowtie2} and a variant calling step is performed with \texttt{Mutect2}. The variants are annotated with \texttt{SnpEff}. This protocol does not provide insight into parameters or detailed settings for the single tools. \\
+One protocol by Munir et al. working with Illumina-sequenced data describes a \ac{GATK} 4.0 pipeline to run on a local machine~\cite{munir2022whole}. Its preprocessing step includes quality checks with \texttt{MultiQC} and trimming with \texttt{fastp}. Mapping is performed using \texttt{Bowtie2} and a variant calling step is performed with \texttt{Mutect2}. The variants are annotated with \texttt{SnpEff}. This protocol does not provide insight into parameters or detailed settings for the single tools. \\
 Another \ac{FMDV} specific pipeline to analyse NGS data produced using \ac{ONT} is described by Brown et al.~\cite{brown2021characterising}. They compare the resulting consensus sequence with Illumina sequenced data. For this analysis, quality control is performed with \texttt{FastQC}, trimming the read ends using \texttt{Prinseq-lite} and \texttt{sickle} for quality and length filtering. Afterwards, the preprocessed reads are assembled using \texttt{IDBA\_UD} and a \ac{BLAST}n search. The resulting contig is used as a reference sequence for mapping with \texttt{BWA-MEM}. The final consensus sequence is obtained using \texttt{samtools}~\cite{brown2021characterising}. Again, this protocol is not a start-to-end pipeline but requires the execution of the single tools.

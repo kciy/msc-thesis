@@ -21,7 +21,13 @@ One strength of \ac{NGS} is that it can be used to detect emerging viral disease
 
 In sequencers, falso positive variants (\ac{FPV}) must be avoided (happens when too many amplifiation cycles are made)
 
-% Efficiency: Assembly vs. Mapping; efficiency more details in discussion.
+BWA-MEM vs. BWA-MEM2 for small viral genomes: no big speed gain, error-prone as a new tool. preferably stick to known tools in Galaxy that are proved to work well and have a maintenance
+
+-> caveat of tools with small development teams: abundance of technological advancements or error solving, but dependence on the reliablity -> choose established software
+
+% Efficiency: Assembly vs. Mapping; efficiency
+% Kraken2 vs. VAPOR; 
+% Efficiency: LoFreq vs. iVar consensus; both consensus identification methods using the same site-specific depth threshold
 
 % If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time senstive. The presented pipeline could be used in a broad context for the use in many laboraties.
 % building index is expensive (BWT)
@@ -39,3 +45,5 @@ further validation and improvement of the developed pipelines, expansion to othe
 * more visualisation of the data
 
 * long-term objective: build public high-resolution databases to enable researchers to detect mutation of an isolate. this is crucial for a global surveillance system to work.
+
+* develop workflows for the same purpose that work with other NGS sequencing data (ONT, PacBio etc.)
