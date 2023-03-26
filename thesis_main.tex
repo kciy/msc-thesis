@@ -57,13 +57,17 @@
     \input{chapters/4-results}
     \input{chapters/5-discussion}
     \input{chapters/6-conclusion}
+    \newpage
+    \addcontentsline{toc}{chapter}{Bibliography}
     \bibliographystyle{ieeetr}
     \bibliography{bib/bib}
-    \addcontentsline{toc}{chapter}{Bibliography}
     \newpage
-    \input{chapters/appendix}
+
+    \frontmatter
+    % \clearpage
+    \pagenumbering{Roman}
     \addcontentsline{toc}{chapter}{Appendix}
-    \newpage
+    \input{chapters/appendix}
     \thispagestyle{empty}
     \mbox{}
 
