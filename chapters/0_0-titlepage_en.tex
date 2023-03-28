@@ -1,4 +1,3 @@
-
 \begin{titlepage}
 \begin{center}
 
@@ -6,49 +5,30 @@
 
 {\Large Master Thesis}\\[0.4cm]
 
-
 % _____________________________________________________________________________
 \HorizontalLine \\[0.4cm]
-% Write your title in a fancy way like this if you want to customize it, otherwise simply let tex do it for you
-% \begin{spacing}{3}
-%     {\huge \bfseries The Long, Long } \\
-%     {\huge \bfseries Long Long} \\
-%     {\huge \bfseries Title}\\
-% \end{spacing}
 { \huge \bfseries \thetitle }
-\HorizontalLine \\[1.8cm]
+\HorizontalLine \\[1.7cm]
 % _____________________________________________________________________________
 
-
-{\Huge \theauthor} \\[2.6cm]
-
-
-% \begin{tabular}[hc]{>{\huge}l >{\huge}l}
-%   Examiner: & \firstexaminer \\[0.3cm]
-%   Second Examiner: & \secondexaminer \\[0.3cm]
-%   Advisor: & \advisers \\[0.4cm]
-% \end{tabular}
+{\Huge \theauthor} \\[2.2cm]
 
 \vfill
 
 \includegraphics*[width=0.36\textwidth]{media/0_0-uni-logo.png}
-
-%\vfill  % move the following text to the bottom
 
 \Large {
     Albert-Ludwigs-University Freiburg\\
     Faculty of Engineering\\
     Department of Computer Science\\
     Bioinformatics Group\\
-
     April 28\textsuperscript{th}, 2023\\
 }
 \end{center}
 \end{titlepage}
 
 \thispagestyle{empty}
-% title page back
-\ \vfill \ \\  % at least one space required before vfill
+\ \vfill \ \\ 
 \
 \textbf{Writing Period}            \smallskip{} \\
 October 28th, 2022 -- April 28th, 2023   \bigskip{} \\
@@ -56,16 +36,8 @@ October 28th, 2022 -- April 28th, 2023   \bigskip{} \\
 \textbf{Examiner}                  \smallskip{} \\
 \firstexaminer                     \bigskip{} \\
 \
-% If there is a second examiner include it
-\ifdef{\secondexaminer}
-	{
-	% Include
-	\textbf{Second Examiner}       \smallskip{} \\
-	\secondexaminer                \bigskip{} \\
-	\
-	}
-	{
-	% No second examiner, ignore
-	}
+\textbf{Second Examiner}       \smallskip{} \\
+\secondexaminer                \bigskip{} \\
+\
 \textbf{Advisor}                  \smallskip{} \\
 \advisers
