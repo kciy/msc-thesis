@@ -1,43 +1,53 @@
 \chapter{Results and Workflow Evaluation}\label{chap:results}
 The Galaxy workflows are validated using real-world datasets from different laboratories. The analysis results for each workflow with complying test samples are described below.
 
-\section{Poxvirus Illumina Workflow}
+\section{Validation of Poxvirus Workflow on Lumpy Skin Disease Virus Datasets}
 \todoit
-Samples by Sciensano by Elisabeth Mathijs
+% "using SARS-CoV-2 amplicon sequencing data produced using the SWIFT v2 protocol on an Illumina NovaSeq 6000"
+% "given just raw untrimmed sequence data in FASTQ format, the total amount of time ViReflow required to perform read mapping, read trimming, variant calling, and consensus-sequence calling remained less than 10 min"
+Public samples by Sciensano by Elisabeth Mathijs
 
 \ac{IWC} link, primer scheme.
-tested with \ac{LSDV} data,
-pipeline outputs on 20L70, 20L81
+tested with \ac{LSDV} data from 2021
 
-\subsection{LSDV Datasets 20L70 and 20L81}
+20L70 pool1 (SRR15145276) % 1 ILLUMINA (Illumina MiSeq) run: 431,910 spots, 207M bases, 116.7Mb downloads. Design: Overlapping amplicons, NexteraXT library prep
+and pool2 (SRR15145275) % 1 ILLUMINA (Illumina MiSeq) run: 431,020 spots, 223.7M bases, 126.9Mb downloads. Design: Overlapping amplicons, NexteraXT library prep
+
+20L81 pool1 (SRR15145274) % 1 ILLUMINA (Illumina MiSeq) run: 508,084 spots, 274.4M bases, 168.7Mb downloads. Design: Overlapping amplicons, NexteraXT library prep
+and pool2 (SRR15145273) % 1 ILLUMINA (Illumina MiSeq) run: 433,720 spots, 237M bases, 143.4Mb downloads. Design: Overlapping amplicons, NexteraXT library prep
+
+NC\_003027.1 as reference sequence (South African Neethling strain. Collection date: 1959 from Bos taurus)
+-> also used for mostly used vaccine. Other strains are wildtype LSDV and KSGP strains (Accession: PRJNA661421, SRA: SRS7321935)
+
+We emply our pipeline using a tiling amplicon approach with masked references for each half genome.
+
+% "Depending on the computational resources available, the total throughput can be largely independent of the number of samples, because the processing steps for individual datasets can be executed in parallel."
+
+\section{Validation of AIV Workflow on H4N6 and H5N8 Samples}\label{sec:4-aiv}
 \todoit
 
-\section{AIV Workflow}\label{sec:4-aiv}
-\todoit
+We illustrate the utility of the workflow on the Galaxy platform, we use public real-world datasets
 
-We illustrate the utility of the workflow on the Galaxy platform, we use real datasets
-
-Reference database for each influenza gene segment, prepared the collection from public INSAFlu data. Consists of 56 sequences
+Reference database for each influenza gene segment, prepared the collection from public INSaFLU data. Consists of 56 sequences
 
 within-subtype variation is not captured well by this ref. database (1 reference per subtype)
 
 controlling influenza A/B species assignment: 50 informative references
 
 Samples by Sciensano s4+s8
+% U2008751-n5_S4 (H4N6)
+% U2012100-n21_S8
 
 point out output for downstream analyses 
 
-\subsection{AIV Datasets U2012100-n21\_S8 and U2008751-n5\_S4}
-\todoit
 Quality report, snipit plots, IQ-Tree for \ac{HA}/\ac{NA}, consensus reference, VAPOR scores
 
-\section{FMDV Workflow}
+\section{Validation of FMDV Workflow on ? Samples}
+O/SAT2 samples
 \todoit
-Samples by Pirbright Institute by Dr. Graham Freimanis
+Samples by Pirbright Institute by Dr. Graham Freimanis (NOT YET)
 
-\subsection{FMDV Datasets ``random'' accession}
-\todoit
-wait for samples
+...wait for samples
 
 \section{Workflow Profiling}
 \todoit
