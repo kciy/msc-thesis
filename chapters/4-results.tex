@@ -2,26 +2,31 @@
 The Galaxy workflows are validated using real-world datasets from different laboratories. The analysis results for each workflow with complying test samples are described below.
 
 \section{Validation of Poxvirus Workflow on Lumpy Skin Disease Virus Datasets}
+We employed our pipeline using a tiling amplicon approach with masked reference sequences for each half genome. Two public \ac{LSDV} samples, 20L70 (SRR15145276 \todo{oder accession mit SRX angeben?} and SRR15145275) and 20L81 (SRR15145274 and SRR15145273), that were sequenced with the required tiled amplicon method in two pools are used. Collected from cattle in 2020 during a lumpy skin disease outbreak in Nothern Vietnam (20L70\_Dinh-To/VNM/20 and 20L81\_Bang-Thanh/VNM/20), both samples were sequenced on an MiSeq System using a Nextera XT DNA library preparation kit (Illumina). The used \acs{CaPV} primer scheme in \ac{BED} format contains pool identifier in the \textit{SCORE} column. The widely-used vaccine ``Neethling'' strain was used as reference genome (NC\_003027). \\
+The raw FASTQ files for each sample were trimmed with \texttt{fastp} so that over 
+
+\setlength{\tabcolsep}{14pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{lcc}
+    \toprule
+    \textbf{Output Metric}                                                              & \textbf{20L70}  & \textbf{20L81} \\ \midrule
+    Paired-end raw reads                                                                  & 863,820        & 1,016,168      \\ \hdashline
+    \begin{tabular}[c]{@{}l@{}}Paired-end reads after\\ quality trimming\end{tabular}     & 856,128        & 947,064        \\ \midrule
+    \begin{tabular}[c]{@{}l@{}}Proportion of reads\\ mapping to NI-2490 (\%)\end{tabular} & 99.6           & 77.3           \\ \hdashline
+    \begin{tabular}[c]{@{}l@{}}Proportion of NI-2490\\ genome covered\end{tabular}        & 100\%          & 100\%          \\ \bottomrule
+    \end{tabular}
+    \caption{Summary of the main metrics for datasets 20L70 and 20L81.}
+    \label{tab:pox-metrics}
+\end{table}
+
 \todoit
-% "using SARS-CoV-2 amplicon sequencing data produced using the SWIFT v2 protocol on an Illumina NovaSeq 6000"
-% "given just raw untrimmed sequence data in FASTQ format, the total amount of time ViReflow required to perform read mapping, read trimming, variant calling, and consensus-sequence calling remained less than 10 min"
-Public samples by Sciensano by Elisabeth Mathijs
-
 \ac{IWC} link, primer scheme.
-tested with \ac{LSDV} data from 2021
 
-20L70 pool1 (SRR15145276) % 1 ILLUMINA (Illumina MiSeq) run: 431,910 spots, 207M bases, 116.7Mb downloads. Design: Overlapping amplicons, NexteraXT library prep
-and pool2 (SRR15145275) % 1 ILLUMINA (Illumina MiSeq) run: 431,020 spots, 223.7M bases, 126.9Mb downloads. Design: Overlapping amplicons, NexteraXT library prep
-
-20L81 pool1 (SRR15145274) % 1 ILLUMINA (Illumina MiSeq) run: 508,084 spots, 274.4M bases, 168.7Mb downloads. Design: Overlapping amplicons, NexteraXT library prep
-and pool2 (SRR15145273) % 1 ILLUMINA (Illumina MiSeq) run: 433,720 spots, 237M bases, 143.4Mb downloads. Design: Overlapping amplicons, NexteraXT library prep
-
-NC\_003027.1 as reference sequence (South African Neethling strain. Collection date: 1959 from Bos taurus)
+%NC\_003027.1 as reference sequence (South African Neethling strain. Collection date: 1959 from Bos taurus)
 -> also used for mostly used vaccine. Other strains are wildtype LSDV and KSGP strains (Accession: PRJNA661421, SRA: SRS7321935)
 
-We emply our pipeline using a tiling amplicon approach with masked references for each half genome.
-
-% "Depending on the computational resources available, the total throughput can be largely independent of the number of samples, because the processing steps for individual datasets can be executed in parallel."
 
 \section{Validation of AIV Workflow on H4N6 and H5N8 Samples}\label{sec:4-aiv}
 \todoit
