@@ -11,7 +11,7 @@ Analyse pox virus genomes sequenced as half-genomes (for ITR resolution) in a ti
 * [WorkflowHub](https://workflowhub.eu/workflows/439)
 
 #### Avian Influenza Virus Analysis
-Find the closest reference for each segment with VAPOR, map against this hybrid refence with BWA-MEM, filter, consensus sequence construction and phylogenetic tree construction with IQ-Tree for HA and NA genes.
+Find the closest reference for each segment with VAPOR, map against this hybrid reference with BWA-MEM, filter, consensus sequence construction and phylogenetic tree construction with IQ-Tree for HA and NA genes.
 
 #### Foot and Mouth Disease Virus Analysis
 Serotyping, WGS analysis.
