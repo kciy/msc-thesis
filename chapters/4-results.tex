@@ -2,7 +2,7 @@
 The Galaxy workflows are validated using real-world datasets from different laboratories. The analysis results for each workflow with complying test samples are described below.
 
 \section{Validation of Poxvirus Workflow on Lumpy Skin Disease Virus Datasets}
-We employed our pipeline using a tiling amplicon approach with masked reference sequences for each half genome. Two public \ac{LSDV} samples, 20L70 (SRR15145276 \todo{oder accession mit SRX angeben?} and SRR15145275) and 20L81 (SRR15145274 and SRR15145273), that were sequenced with the required tiled amplicon method in two pools are used. Collected from cattle in 2020 during a lumpy skin disease outbreak in Northern Vietnam (20L70\_Dinh-To/VNM/20 and 20L81\_Bang-Thanh/VNM/20), both samples were sequenced on an MiSeq System using a Nextera XT DNA library preparation kit (Illumina). The used \acs{CaPV} primer scheme in \ac{BED} format contains pool identifier in the \textit{SCORE} column. The widely-used vaccine ``Neethling'' strain was used as reference genome (NC\_003027). \\
+We employed our pipeline using a tiling amplicon approach with masked reference sequences for each half genome. Two public \ac{LSDV} samples, 20L70 (SRR15145276 \todo{oder accession mit SRX angeben?} and SRR15145275) and 20L81 (SRR15145274 and SRR15145273), that were sequenced with the required tiled amplicon method in two pools are used. Collected from cattle in 2020 during a lumpy skin disease outbreak in Northern Vietnam (20L70\_Dinh-To/VNM/20 and 20L81\_Bang-Thanh/VNM/20), both samples were sequenced on an MiSeq System using a NexteraXT. The used \acs{CaPV} primer scheme in \ac{BED} format contains pool identifier in the \textit{SCORE} column. The widely-used vaccine ``Neethling'' strain was used as reference genome (NC\_003027). \\
 The raw FASTQ files for each sample were trimmed with \texttt{fastp} and mapped to each reference half. \\
 
 \setlength{\tabcolsep}{16pt}
@@ -20,10 +20,10 @@ The raw FASTQ files for each sample were trimmed with \texttt{fastp} and mapped 
     Alignment error rate                        & 1.25\%             & 1.30\%             \\ \bottomrule
     \end{tabular}
     \caption{Metrics after preprocessing and mapping for datasets 20L70 and 20L81.}
-    \label{tab:pox-metrics}
+    \label{tab:4-pox-metrics}
 \end{table}
 
-The used primer scheme contains a total of 23 primers, while the first 12 primers cover \textit{pool1} and the remaining 11 primers cover \textit{pool2}. Inspection of the masking intervals for N-masking the reference confirms that the right-most position of Ns of masking the first half (i.e. preparing the reference for mapping \textit{pool2} reads) is the first start position of \textit{pool2} primers (``1 -- 79081'', and 79081 being the start position of primer 13). Accordingly for N-masking the reference for mapping of \textit{pool1} reads, the interval from the right-most primer-end of \textit{pool1} primers is 80202, the end position of primer 12, resulting in the interval ``80202 -- 150773''. The final position is the remainder of the reference sequence. Since the reference genome and primer scheme are the same for both datasets 20L70 and 20L81, the N-masked reference is used for both mappings. Mapping of each pool is done with \texttt{BWA-MEM} and default settings for Illumina-sequenced reads, using the N-masked reference for \textit{pool1} and \textit{pool2} respectively. After merging the mappings with \texttt{Samtools merge}, statistics for preprocessing and mapping are reported and summarised in~\tabref{tab:pox-metrics}. \\
+The used primer scheme contains a total of 23 primers, while the first 12 primers cover \textit{pool1} and the remaining 11 primers cover \textit{pool2}. Inspection of the masking intervals for N-masking the reference confirms that the right-most position of Ns of masking the first half (i.e. preparing the reference for mapping \textit{pool2} reads) is the first start position of \textit{pool2} primers (``1 -- 79081'', and 79081 being the start position of primer 13). Accordingly for N-masking the reference for mapping of \textit{pool1} reads, the interval from the right-most primer-end of \textit{pool1} primers is 80202, the end position of primer 12, resulting in the interval ``80202 -- 150773''. The final position is the remainder of the reference sequence. Since the reference genome and primer scheme are the same for both datasets 20L70 and 20L81, the N-masked reference is used for both mappings. Mapping of each pool is done with \texttt{BWA-MEM} and default settings for Illumina-sequenced reads, using the N-masked reference for \textit{pool1} and \textit{pool2} respectively. After merging the mappings with \texttt{Samtools merge}, statistics for preprocessing and mapping are reported and summarised in~\tabref{tab:4-pox-metrics}. \\
 The merged mapping of both read pools is quality trimmed with \texttt{iVar trim} to remove primers and reads with a length of less than 30. The remaining reads are used for full-length consensus sequence construction with \textit{iVar consensus}, developed for amplicon-based sequencing data. Inspecting the consensus sequences for both samples, %%%
 
 \todoit
@@ -34,9 +34,28 @@ The merged mapping of both read pools is quality trimmed with \texttt{iVar trim}
 
 
 \section{Validation of AIV Workflow on H4N6 and H5N8 Samples}\label{sec:4-aiv}
-The AIV Illumina workflow on the Galaxy platform was evaluated using two real-world samples (U2008751-n5\_S4 and U2012100-n21\_S8) provided by the Belgian Sciensano lab. These samples were sequenced on an Illumina platform in paired-end mode and are utilized one sample per workflow run. For the AIV Illumina workflow, a reference database in FASTA format is required as a collection with eight elements, one per AIV segment, which is uploaded in Galaxy. The database we use contains multiple sequences per segment and the metrics are provided in Supplementary~\tabref{sec:apx-aiv-refs}.
+The AIV Illumina workflow on the Galaxy platform was evaluated using two real-world samples (U2008751-n5\_S4 and U2012100-n21\_S8) provided by the Belgian Sciensano lab. These samples were sequenced on an Illumina platform in paired-end mode and are utilized one sample per workflow run. \todo{describe samples?} For the AIV Illumina workflow, a reference database in FASTA format is required as a collection with eight elements, one per AIV segment, which is uploaded in Galaxy. The database we use contains multiple sequences per segment. A detailed list is provided in Supplementary~\tabref{sec:apx-aiv-refs}.
+\todo{which ref database?->describe within-subtype variation}
+After starting the workflow with one sample each, the paired-end reads are preprocessed and serve as query reads for \texttt{VAPOR}. Metrics are shown in~\tabref{tab:4-aiv-metrics} Since the reference database contains eight FASTA files in a collection, the tool runs once per segment and outputs one `best' sequence per segment. This
 
-The workflow was able to successfully identify and characterize the avian influenza virus subtypes present in each sample
+\setlength{\tabcolsep}{14pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{lcc} 
+    \toprule
+    \textbf{Output Metric}                      & \textbf{U2008751-n5\_S4} & \textbf{U2012100-n21\_S8} \\ \midrule
+    Paired-end raw reads                        & 1 537 722                & 858 610                   \\ 
+    \begin{tabular}[c]{@{}l@{}}Paired-end reads after quality\\trimming\end{tabular}      & 1 507 396                & 830 176                   \\ \midrule
+    % ?      & 0             & 0             \\ 
+    % ?      & 0             & 0             \\ \bottomrule
+    \end{tabular}
+    \caption{Metrics after preprocessing for datasets U2008751-n5\_S4 and U2012100-n21\_S8.}
+    \label{tab:4-aiv-metrics}
+    % filter min. length=30 and min. mean quality=30, automatic PolyG tail trimming
+\end{table}
+
+The workflow was able to successfully identify and characterise the avian influenza virus subtypes present in each sample
 
 \todoit
 Reference database for each influenza gene segment, prepared the collection from public INSaFLU/NCBI data. Consists of XX many sequences
