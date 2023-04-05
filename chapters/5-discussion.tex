@@ -3,12 +3,14 @@
 
 \section{Contribution to the Field}
 \todoit
-Workflows that solve common problems, provide useful information, are user-friendly, customisable, extendable
 
-single sample vs. multi sample (reality check, what is needed?) \\
-further pox viruses, pipelines can be more or less easily applied/adjusted \\
-limitations \\
+\subsubsection*{Poxvirus Analysis}
 \ac{LSDV} interesting for all poxviruses and adjustable due to \acp{ITR} and tiled-amplicon approach \\
+further pox viruses, pipelines can be more or less easily applied/adjusted \\
+single sample vs. multi sample (reality check, what is needed? maybe multiple samples from one outbreak)
+
+
+\subsubsection*{Avian Influenza Virus Analysis}
 \ac{AIV} downstream - everything is possible. Highlight key minor assets that indicate adaption to mammals -> databases needed to check against, detect mutation of isolates? \\
 Generally: annotate on amino acid layer (most information) \\
 
@@ -19,6 +21,19 @@ surveillance or public health laboratories. Secondly, even if bioinformatics pip
 However using an optimal reference is ideal, since for later advanced applications, such as transmission events, or study of intra-host variation, the closest possible reference may be necessary. Whilst BLAST performed well for individual read classification, it is often too slow for general application. With regards to de novo assembly, in the cases where not enough initial data exists to assemble fragments, mapping allows analysis of limited fragments. Furthermore, assembly of virus genomes can be slow, often taking several days for a single sample when contaminant reads are present.
 
 Make phylogenetic trees publicly accessible, not one sample per strain but in high resolution and greater details, strains from different countries,
+single sample vs. multi sample (reality check, what is needed? maybe multiple samples from one outbreak) 
+
+
+\subsubsection*{Foot-and-mouth Disease Virus Analysis}
+If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time sensitive for large viral genomes. However small viral genomes such as FMDV perform reasonably faster in a de novo assembly than larger DNA genomes and achieve sufficiently good results. Long assembled contigs can be used for choosing a good, representative reference sequence that can be used for mapping. BLAST provides a large database however needs regular updates to deliver current hits and proper surveillance, also relevant for downstream/phylogeny.
+Workflow in two parts requires knowledge and interaction by the user -> error prone?
+
+Nevertheless this is the most suitable approach for high resolution genomic analysis, as a direct mapping fails due to not fitting reference sequences
+
+--------------\\
+Workflows that solve common problems, provide useful information, are user-friendly, customisable, extendable
+
+limitations \\
 
 ``The high sensitivity of the \ac{NGS} technology ensures that major kinds of viral pathogens in mixed samples can be detected.''
 One strength of \ac{NGS} is that it can be used to detect emerging viral diseases with a high genetic variation. Like \ac{AIV}. Since it can analyse a full sequence instead of targeting a specific gene. -> makes sense to use virus-specific primers for \ac{PCR} or \ac{NGS} 
@@ -35,21 +50,22 @@ BWA-MEM vs. BWA-MEM2 for small viral genomes: no big speed gain, error-prone as 
 % Kraken2 vs. VAPOR; 
 % Efficiency: LoFreq vs. iVar consensus; both consensus identification methods using the same site-specific depth threshold
 
-% If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time sensitive. The presented pipeline could be used in a broad context for the use in many laboratories.
+% If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time sensitive for large viral genomes. The presented pipelines could be used in a broad context for the use in many laboratories.
 % building index is expensive (BWT)
 
 \section{Future Directions}
 \todoit
-further validation and improvement of the developed pipelines, expansion to other viral livestock diseases, integration with existing surveillance systems; expand the \ac{VETLAB} network to entitle even more professionals to professionally analyse their samples.
+further validation and improvement of the developed pipelines, application to other viral livestock diseases, integration with existing surveillance systems; expand the \ac{VETLAB} network to entitle even more professionals to professionally analyse their samples.
+more testing, more training material
 
-\ac{AIV} workflow offers many possible directions for downstream analysis:
+workflows offer many possible directions for downstream analysis that could be integrated into the main workflows if needed:
 
 * consensus sequence for each segment -> compare consensus sequence to others can help identify outbreaks and patterns of transmission, get more insights how the virus spreads and its evolution
 * Prokka annotation file. Predict the protein coding regions of the virus, to understand the function of the viral proteins and how they interact with host cells
 * SNPs relative to the reference sequence
 * \ac{MSA} and phylogenetic tree for broad or detailed phylogenetic analysis and understand evolutionary relationships between the sample and other strains. could also use clusters or subtypes within the sample. make trees available so that new isolates can be immediately arranged
 * more visualisation of the data
-
 * long-term objective: build public high-resolution databases to enable researchers to detect mutation of an isolate. this is crucial for a global surveillance system to work.
-
 * develop workflows for the same purpose that work with other NGS sequencing data (ONT, PacBio etc.)
+
+fine-tune settings of individual tools, improve quality of tools (VAPOR)
