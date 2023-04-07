@@ -14,7 +14,7 @@ We employed our pipeline using a tiling amplicon approach with masked reference 
     Paired-end raw reads                        & 863 820            & 1 016 168          \\ 
     Paired-end reads after quality trimming     & 856 138            & 947 064            \\ \midrule
     Proportion of reads mapping to reference    & 99.6\%             & 77.3\%             \\ 
-    Proportion of reference covered             & 100\%              & 100\%              \\ \midrule
+    Proportion of reference covered             & 99.68\%            & 99.68\%            \\ \midrule
     Mean coverage                               & 2 705.2 \texttimes & 2 411.4 \texttimes \\ 
     Alignment error rate                        & 1.25\%             & 1.30\%             \\ \bottomrule
     \end{tabular}
@@ -29,7 +29,7 @@ The merged mapping of both read pools is quality trimmed with \texttt{iVar trim}
 
 \section{Validation of AIV Workflow on H4N6 and H5N8 Samples}\label{sec:4-aiv}
 The \ac{AIV} Illumina workflow on the Galaxy platform was evaluated using two field isolates provided by the Belgian Sciensano lab. The isolates were extracted in Belgium in 2020 from an H4N6 infected magpie (EPI\_ISL\_7593059) and an H5N8 infected duck (EPI\_ISL\_7596571). The samples were sequenced on an Illumina platform in paired-end mode and are utilised one sample per workflow run. For the \ac{AIV} Illumina workflow, a reference database in FASTA format is required as a collection with eight datasets, one per \ac{AIV} segment, which is uploaded in Galaxy. The database we used contains multiple sequences per segment. A detailed list is provided in Supplementary~\tabref{sec:apx-aiv-refs}.\\
-\todo{which ref database?->describe within-subtype variation}
+\todo{which ref database? describe within-subtype variation}
 
 \setlength{\tabcolsep}{14pt}
 \renewcommand{\arraystretch}{1.3}
@@ -40,12 +40,9 @@ The \ac{AIV} Illumina workflow on the Galaxy platform was evaluated using two fi
     \textbf{Output Metric}                                                                & \textbf{EPI\_ISL\_7593059} & \textbf{EPI\_ISL\_7596571} \\ \midrule
     Paired-end raw reads                                                                  & 1 537 722                  & 858 610                    \\ 
     \begin{tabular}[c]{@{}l@{}}Paired-end reads after quality\\trimming\end{tabular}      & 1 507 396                  & 830 176                    \\ \midrule
-    % ?      & 0             & 0             \\ 
-    % ?      & 0             & 0             \\ \bottomrule
     \end{tabular}
     \caption{Metrics after preprocessing of EPI\_ISL\_7593059 and\\EPI\_ISL\_7596571.}
     \label{tab:4-aiv-metrics}
-    % filter min. length=30 and min. mean quality=30, automatic polyG tail trimming
 \end{table}
 
 After starting the workflow with one sample each, the paired-end reads are preprocessed and serve as query reads for \texttt{VAPOR}. Metrics are shown in~\tabref{tab:4-aiv-metrics}. Since the reference database contains eight FASTA files in a collection, the tool runs once per segment and outputs the highest scoring sequences per segment, i.e. the most similar sequences from the database to the query sequence. 
@@ -68,10 +65,10 @@ After starting the workflow with one sample each, the paired-end reads are prepr
 \label{tab:4-aiv-vapor}
 \end{table}
 
-The \texttt{VAPOR} search was able to successfully identify the avian influenza virus subtypes present in each sample: for the H5N8 sample, the X most similar seqences in the HA segment origin from samples with the H5 subtype, while the X most similar sequences in the NA segment origin from samples with the N8 subtype. Similarly, the H4N6 sample was correctly identified. The results of the \texttt{VAPOR} run are summarised in~\tabref{tab:4-aiv-vapor}.
+The \texttt{VAPOR} search was able to successfully identify the avian influenza virus subtypes present in each sample: for the H5N8 sample, the \todo{x} most similar sequences in the HA segment origin from samples with the H5 subtype, while the \todo{x} most similar sequences in the NA segment origin from samples with the N8 subtype. Similarly, the H4N6 sample was correctly identified. The results of the \texttt{VAPOR} run are summarised in~\tabref{tab:4-aiv-vapor}.
 
 \todoit
-Reference database for each influenza gene segment, prepared the collection from public INSaFLU/NCBI data. Consists of XX many sequences
+Reference database for each influenza gene segment, prepared the collection from public INSaFLU/NCBI data. Consists of \todo{x} sequences
 
 within-subtype variation IS captured well by this ref. database (many references per subtype)
 
@@ -80,12 +77,9 @@ within-subtype variation IS captured well by this ref. database (many references
 VAPOR scores, consensus reference, snipit plots, IQ-Tree for \ac{HA}/\ac{NA}, 
 point out output for downstream analyses 
 
-\section{Validation of FMDV Workflow on Asia-1, A, SAT-1 and SAT-2 Samples}
-% the first 2:  asymptomatic and symptomatic cattle and buffalo in Pakistan from 2008-2012
-% Asia-1: SRR17960035 (ok many reads) ILLUMINA (NextSeq 550), submitted by USDA Agricultural Research Service, PAK/MRD/66/2012/Pakistan
-% A: SRR18751245 (many reads, co-infection) ILLUMINA (NextSeq 550), submitted by USDA Agricultural Research Service, PAK/KCH/7/2009/Pakistan
-% SAT-1: SRR18685689 (ok many reads) ILLUMINA (NextSeq 550), submitted by USDA Agricultural Research Service, Kenya/8Jan2016/SAT1/Kenya, from buffaloes, passaged and plaque-purified 
-% SAT-2: SRR9328470 (few reads) ILLUMINA (NextSeq 550), submitted by USDA Agricultural Research Service, from Nigeria. Viruses from 2014 outbreak
+\section{Validation of FMDV Workflows on Asia-1, A, SAT-1 and SAT-2 Samples}
+The samples used for workflow validation are downloaded from the \ac{NCBI} and were chosen exemplatory for four of the seven different \ac{FMDV} serotypes. All four samples were sequenced on an Illumina NextSeq 550 platform. Two samples (Asia-1 serotype, SRR17960053 and A serotype, SRR18751245) were taken from infected cattle and buffalo during an outbreak in Pakistan from 2008 to 2012. One sample (SAT-1 serotype, SRR18685689) was isolated from buffaloes in Kenya in 2016 and plaque purified before sequencing, and the fourth sample (SAT-2 serotype, SRR9328470) was taken from an \ac{FMD} outbreak in Nigeria in 2014. \\
+The metrics for preprocessing of the raw reads are described in~\tabref{tab:4-fmdv-metrics}. The SAT-2 sample contains a very low number of reads, however to show the ability of the developed workflows, it was kept in the test sample collection. 
 
 \setlength{\tabcolsep}{12pt}
 \renewcommand{\arraystretch}{1.3}
@@ -93,19 +87,38 @@ point out output for downstream analyses
     \centering
     \begin{tabular}{lcccc} 
     \toprule
-    \textbf{Output Metric}                                                           & \textbf{Asia-1} & \textbf{A} & \textbf{SAT-1} & \textbf{SAT-2}\\ \midrule
-    Paired-end raw reads                                                             & 1 086 618       & 2 297 706  & 903 052        & 11 816        \\ 
-    \begin{tabular}[c]{@{}l@{}}Paired-end reads after quality\\trimming\end{tabular} & 1 037 082       & 2 112 856  & 806 712        & 11 576        \\ \midrule
+    \textbf{Output Metric}                                                              & \textbf{Asia-1} & \textbf{A}                                           & \textbf{SAT-1} & \textbf{SAT-2}\\ \midrule
+    Paired-end raw reads                                                                & 577 360         & 2 297 706                                            & 903 052        & 11 816        \\ 
+    \begin{tabular}[c]{@{}l@{}}Paired-end reads after quality\\trimming\end{tabular}    & 561 280         & 2 112 856                                            & 806 712        & 11 576        \\ \midrule
+    \begin{tabular}[c]{@{}l@{}}Length of assembled contigs\\with > 4000 basepairs\end{tabular} & 7760            & \begin{tabular}[c]{@{}l@{}}12133\\7558\end{tabular}  & 7329           & 7696          \\ \bottomrule
     \end{tabular}
-    \caption{Metrics after preprocessing of Asia-1, A, SAT-1 and SAT-2 serotype samples.}
+    \caption{Metrics after preprocessing and \textit{de novo} assembly of Asia-1, A, SAT-1 and SAT-2 serotype reads.}
     \label{tab:4-fmdv-metrics}
-    % filter min. length=30 and min. mean quality=30, automatic polyG tail trimming
 \end{table}
 
-\todoit
-Samples by Pirbright Institute by Dr. Graham Freimanis (NOT YET)
+After \textit{de novo} assembly with \texttt{rnaviralSPAdes}, contigs less than half the length of the \ac{FMDV} genome size were discarded. This resulted in one contig per sample for the \ac{BLAST}n search, except for the A serotype reads, for which two contigs were assembled. As the longer contig is far larger than the \ac{FMDV} genome size, a contamination or co-infection with another virus is indicated. The \ac{BLAST}n search was performed against the \ac{NCBI} nucleotide database to identify the closest viral sequence matches. The results of the \ac{BLAST}n search showed that all the contigs were closely related to \ac{FMDV}. The highest sequence identity was observed for the Asia-1 serotype sample, with 96.74\% identity, followed by the A, SAT-1 and SAT-2 serotypes, with 94.87\%, 93.77\% and 91.42\% identity, respectively. These results were consistent with the clinical samples being positive for \ac{FMDV} infection. However, the second contig of the A sample resulted in a \ac{BLAST}n hit for pestivirus (formerly known as bovine viral diarrhea virus 1) with 93.16\% identity~\cite{smith2017proposed}. This suggests the presence of a co-infection or contamination with the pestivirus in the sample. The run with the discussed samples of this first \ac{FMDV} workflow is provided in a Galaxy history and is available via link, see Supplementary~\secref{sec:apx-fmdv-links}.
+
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{table}[]
+    \begin{tabular}{@{}lllll@{}}
+    \toprule
+    \textbf{Output Metric}                                                            & \textbf{Asia-1}    & \textbf{A}          & \textbf{SAT-1}   & \textbf{SAT-2}     \\ \midrule
+    \begin{tabular}[c]{@{}l@{}}Accession no. of\\reference\end{tabular}               & KM268898.1         & JN006722.1          & KM268899.1       & JX014256.1         \\ \midrule
+    \begin{tabular}[c]{@{}l@{}}Proportion of reads\\mapping to reference\end{tabular} & 100\%              & 100\%               & 100\%            & 100\%              \\
+    \begin{tabular}[c]{@{}l@{}}Proportion of reference\\covered\end{tabular}          & 99.67\%            & 100\%               & 99.60\%          & 98.16\%            \\ \midrule
+    Mean coverage                                                                     & 1 525.9 \texttimes & 15 895.5 \texttimes & 188.0 \texttimes & 9 302.8 \texttimes \\
+    Alignment error rate                                                              & 3.47\%             & 5.08\%              & 8.18\%           & 5.87\%             \\ \bottomrule
+    \end{tabular}
+    \caption{Quality and coverage metrics of the alignment in the second FMDV workflow.}
+\label{tab:4-fmdv-map}
+\end{table}
+
+In order to run the second workflow for reference-based mapping and consensus sequence construction for each of the four samples, the top \ac{BLAST}n hit of each sample is downloaded in FASTA format to be used as reference sequence for the respective sample. This method ensures that the consensus sequence for each sample is generated based on the closest available reference sequence, which can improve the accuracy and reliability of the final assembly. Quality and coverage measures are provided for each sample are provided in~\tabref{tab:4-fmdv-map}. With the \texttt{NCBI Accession Download} tool, the plausible \ac{FMDV} sequences are downloaded to Galaxy and with \texttt{Collapse Collection} the FASTA file is extracted from the list to a single file, so that it is suitable for the workflow. 
+%%%%
+
+%Samples by Pirbright Institute by Dr. Graham Freimanis (NOT YET)
 
 \section{Workflow Profiling}
 \todoit
 Assembly vs. mapping? blast, vapor
- 
