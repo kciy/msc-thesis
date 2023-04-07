@@ -23,18 +23,13 @@ We employed our pipeline using a tiling amplicon approach with masked reference 
 \end{table}
 
 The used primer scheme contains a total of 23 primers, while the first 12 primers cover \textit{pool1} and the remaining 11 primers cover \textit{pool2}. Inspection of the masking intervals for N-masking the reference confirms that the right-most position of Ns of masking the first half (i.e. preparing the reference for mapping \textit{pool2} reads) is the minimal start position of \textit{pool2} primers (``1 -- 79081'', and 79081 being the start position of primer 13). Accordingly for N-masking the reference for mapping of \textit{pool1} reads, the interval from the right-most primer-end of \textit{pool1} primers is 80202, the end position of primer 12, resulting in the interval ``80202 -- 150773''. The final position is the maximal end position and the total length of the reference sequence. Since the reference genome and primer scheme are the same for both datasets 20L70 and 20L81, the N-masked references are used for both mappings. Mapping of each pool is done with \texttt{BWA-MEM} and default settings for Illumina-sequenced reads, using the N-masked reference for \textit{pool1} and \textit{pool2} respectively. After merging the mappings with \texttt{Samtools merge}, statistics for preprocessing and mapping are reported and summarised in~\tabref{tab:4-pox-metrics}. \\
-The merged mapping of both read pools is quality trimmed with \texttt{iVar trim} to remove primers and reads with a length of less than 30. The remaining reads are used for full-length consensus sequence construction with \textit{iVar consensus}, developed for amplicon-based sequencing data. Inspection of the consensus sequences for both samples shows that 
+The merged mapping of both read pools is quality trimmed with \texttt{iVar trim} to remove primers and reads with a length of less than 30. The remaining reads are used for full-length consensus sequence construction with \textit{iVar consensus}, developed for amplicon-based sequencing data. Inspection of the consensus sequences for both samples shows that apart from the front and tail until the first and last primer positions a consensus sequence was produced and a base at each position could be found.
 
 \todo{primer scheme?}
 
-%NC\_003027.1 as reference sequence (South African Neethling strain. Collection date: 1959 from Bos taurus)
--> also used for mostly used vaccine. Other strains are wildtype LSDV and KSGP strains (Accession: PRJNA661421, SRA: SRS7321935)
-
-
 \section{Validation of AIV Workflow on H4N6 and H5N8 Samples}\label{sec:4-aiv}
-The \ac{AIV} Illumina workflow on the Galaxy platform was evaluated using two real-world samples (U2008751-n5\_S4 and U2012100-n21\_S8) provided by the Belgian Sciensano lab. These samples were sequenced on an Illumina platform in paired-end mode and are utilised one sample per workflow run. \todo{describe samples?} For the \ac{AIV} Illumina workflow, a reference database in FASTA format is required as a collection with eight elements, one per \ac{AIV} segment, which is uploaded in Galaxy. The database we use contains multiple sequences per segment. A detailed list is provided in Supplementary~\tabref{sec:apx-aiv-refs}.
+The \ac{AIV} Illumina workflow on the Galaxy platform was evaluated using two field isolates provided by the Belgian Sciensano lab. The isolates were extracted in Belgium in 2020 from an H4N6 infected magpie (EPI\_ISL\_7593059) and an H5N8 infected duck (EPI\_ISL\_7596571). The samples were sequenced on an Illumina platform in paired-end mode and are utilised one sample per workflow run. For the \ac{AIV} Illumina workflow, a reference database in FASTA format is required as a collection with eight datasets, one per \ac{AIV} segment, which is uploaded in Galaxy. The database we used contains multiple sequences per segment. A detailed list is provided in Supplementary~\tabref{sec:apx-aiv-refs}.\\
 \todo{which ref database?->describe within-subtype variation}
-After starting the workflow with one sample each, the paired-end reads are preprocessed and serve as query reads for \texttt{VAPOR}. Metrics are shown in~\tabref{tab:4-aiv-metrics} Since the reference database contains eight FASTA files in a collection, the tool runs once per segment and outputs one `best' sequence per segment. This
 
 \setlength{\tabcolsep}{14pt}
 \renewcommand{\arraystretch}{1.3}
@@ -42,18 +37,38 @@ After starting the workflow with one sample each, the paired-end reads are prepr
     \centering
     \begin{tabular}{lcc} 
     \toprule
-    \textbf{Output Metric}                      & \textbf{U2008751-n5\_S4} & \textbf{U2012100-n21\_S8} \\ \midrule
-    Paired-end raw reads                        & 1 537 722                & 858 610                   \\ 
-    \begin{tabular}[c]{@{}l@{}}Paired-end reads after quality\\trimming\end{tabular}      & 1 507 396                & 830 176                   \\ \midrule
+    \textbf{Output Metric}                                                                & \textbf{EPI\_ISL\_7593059} & \textbf{EPI\_ISL\_7596571} \\ \midrule
+    Paired-end raw reads                                                                  & 1 537 722                  & 858 610                    \\ 
+    \begin{tabular}[c]{@{}l@{}}Paired-end reads after quality\\trimming\end{tabular}      & 1 507 396                  & 830 176                    \\ \midrule
     % ?      & 0             & 0             \\ 
     % ?      & 0             & 0             \\ \bottomrule
     \end{tabular}
-    \caption{Metrics after preprocessing for datasets U2008751-n5\_S4 and U2012100-n21\_S8.}
+    \caption{Metrics after preprocessing of EPI\_ISL\_7593059 and\\EPI\_ISL\_7596571.}
     \label{tab:4-aiv-metrics}
     % filter min. length=30 and min. mean quality=30, automatic polyG tail trimming
 \end{table}
 
-The workflow was able to successfully identify and characterise the avian influenza virus subtypes present in each sample
+After starting the workflow with one sample each, the paired-end reads are preprocessed and serve as query reads for \texttt{VAPOR}. Metrics are shown in~\tabref{tab:4-aiv-metrics}. Since the reference database contains eight FASTA files in a collection, the tool runs once per segment and outputs the highest scoring sequences per segment, i.e. the most similar sequences from the database to the query sequence. 
+
+\setlength{\tabcolsep}{10pt}
+\begin{table}[]
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+                & \textbf{\% of query bases in reads} & \textbf{Mean score} & \textbf{Query description} \\ \midrule
+    PB2         & 0 / 0                               & 0 / 0               & 0 / 0                      \\
+    PB1         & 0 / 0                               & 0 / 0               & 0 / 0                      \\
+    PA          & 0 / 0                               & 0 / 0               & 0 / 0                      \\
+    \textbf{HA} & \textbf{0 / 0}                      & \textbf{0 / 0}      & \textbf{0 / 0}             \\
+    NP          & 0 / 0                               & 0 / 0               & 0 / 0                      \\
+    \textbf{NA} & \textbf{0 / 0}                      & \textbf{0 / 0}      & \textbf{0 / 0}             \\
+    M1          & 0 / 0                               & 0 / 0               & 0 / 0                      \\
+    NS1         & 0 / 0                               & 0 / 0               & 0 / 0                      \\ \bottomrule
+    \end{tabular}
+    \caption{Summarised results of the VAPOR run for two AIV samples. First number represents results for sample EPI\_ISL\_7593059, second number represents sample EPI\_ISL\_7596571.}
+\label{tab:4-aiv-vapor}
+\end{table}
+
+The \texttt{VAPOR} search was able to successfully identify the avian influenza virus subtypes present in each sample: for the H5N8 sample, the X most similar seqences in the HA segment origin from samples with the H5 subtype, while the X most similar sequences in the NA segment origin from samples with the N8 subtype. Similarly, the H4N6 sample was correctly identified. The results of the \texttt{VAPOR} run are summarised in~\tabref{tab:4-aiv-vapor}.
 
 \todoit
 Reference database for each influenza gene segment, prepared the collection from public INSaFLU/NCBI data. Consists of XX many sequences
@@ -62,19 +77,33 @@ within-subtype variation IS captured well by this ref. database (many references
 
 % (not) controlling influenza A/B species assignment: 50 informative references
 
-% U2008751-n5_S4 (H4N6) EPI_ISL_7593059|A/Anas_platyrhynchos/Belgium/8751_0002/2020
-% U2012100-n21_S8 (H5N8) EPI_ISL_7596571|A/Pica_pica/Belgium/12100_005/2020
-
+VAPOR scores, consensus reference, snipit plots, IQ-Tree for \ac{HA}/\ac{NA}, 
 point out output for downstream analyses 
 
-Quality report, snipit plots, IQ-Tree for \ac{HA}/\ac{NA}, consensus reference, VAPOR scores
+\section{Validation of FMDV Workflow on Asia-1, A, SAT-1 and SAT-2 Samples}
+% the first 2:  asymptomatic and symptomatic cattle and buffalo in Pakistan from 2008-2012
+% Asia-1: SRR17960035 (ok many reads) ILLUMINA (NextSeq 550), submitted by USDA Agricultural Research Service, PAK/MRD/66/2012/Pakistan
+% A: SRR18751245 (many reads, co-infection) ILLUMINA (NextSeq 550), submitted by USDA Agricultural Research Service, PAK/KCH/7/2009/Pakistan
+% SAT-1: SRR18685689 (ok many reads) ILLUMINA (NextSeq 550), submitted by USDA Agricultural Research Service, Kenya/8Jan2016/SAT1/Kenya, from buffaloes, passaged and plaque-purified 
+% SAT-2: SRR9328470 (few reads) ILLUMINA (NextSeq 550), submitted by USDA Agricultural Research Service, from Nigeria. Viruses from 2014 outbreak
 
-\section{Validation of FMDV Workflow on ? Samples}
-O/SAT2 samples
+\setlength{\tabcolsep}{12pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{lcccc} 
+    \toprule
+    \textbf{Output Metric}                                                           & \textbf{Asia-1} & \textbf{A} & \textbf{SAT-1} & \textbf{SAT-2}\\ \midrule
+    Paired-end raw reads                                                             & 1 086 618       & 2 297 706  & 903 052        & 11 816        \\ 
+    \begin{tabular}[c]{@{}l@{}}Paired-end reads after quality\\trimming\end{tabular} & 1 037 082       & 2 112 856  & 806 712        & 11 576        \\ \midrule
+    \end{tabular}
+    \caption{Metrics after preprocessing of Asia-1, A, SAT-1 and SAT-2 serotype samples.}
+    \label{tab:4-fmdv-metrics}
+    % filter min. length=30 and min. mean quality=30, automatic polyG tail trimming
+\end{table}
+
 \todoit
 Samples by Pirbright Institute by Dr. Graham Freimanis (NOT YET)
-
-...wait for samples
 
 \section{Workflow Profiling}
 \todoit

@@ -14,7 +14,7 @@ Analyse pox virus genomes sequenced as half-genomes (for ITR resolution) in a ti
 Find the closest reference for each segment with VAPOR, map against this hybrid reference with BWA-MEM, filter, consensus sequence construction and phylogenetic tree construction with IQ-Tree for HA and NA genes.
 
 #### Foot and Mouth Disease Virus Analysis
-Serotyping, WGS analysis.
+De novo assembly on the reads, megablast search to find a suitable reference for mapping and consensus sequence construction.
 
 ### Tools
 Contributions to Galaxy tools IUC:
