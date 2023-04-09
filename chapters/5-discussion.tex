@@ -2,6 +2,15 @@
 \todoit
 
 \section{Contribution to the Field}
+
+Reference-based mapping pipelines
+\begin{itemize}
+    \item reference-based mapping pipelines for surveillance
+    \item ready-to-use, require user interaction at times to pick suitable reference sequence
+    \item transfer of knowledge from SARS-CoV-2 pipelines to other viruses
+    \item on Galaxy, poxvirus WF on IWC for testing and versioning
+\end{itemize}
+
 \todoit
 
 \subsubsection*{Poxvirus Analysis}
@@ -52,9 +61,25 @@ BWA-MEM vs. BWA-MEM2 for small viral genomes: no big speed gain, error-prone as 
 
 % If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time sensitive for large viral genomes. The presented pipelines could be used in a broad context for the use in many laboratories.
 % building index is expensive (BWT)
+\section{Limitations}
+\begin{itemize}
+    \item Illumina seq. data
+    \item amplicon scheme for poxviruses
+    \item mapping-based approach reaches its limits for FMDV -> requires user interaction
+    \item AIV and FMDV not tested with many samples
+\end{itemize}
+
 
 \section{Future Directions}
 \todoit
+\begin{itemize}
+    \item validate with more samples/tests
+    \item extend to more NGS datatypes
+    \item replace tools with faster/newer tools (if available, stable and reliable on Galaxy)
+    \item apply to more viruses
+    \item enhance surveillance, write more training material, use pipelines in production
+\end{itemize}
+
 further validation and improvement of the developed pipelines, application to other viral livestock diseases, integration with existing surveillance systems; expand the \ac{VETLAB} network to entitle even more professionals to professionally analyse their samples.
 more testing, more training material
 
