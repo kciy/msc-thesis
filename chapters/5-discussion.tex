@@ -2,16 +2,26 @@
 \todoit
 
 \section{Contribution to the Field}
+We propose three Galaxy workflows for genomic analysis of NGS-generated data for poxviruses, avian influenza virus and lumpy skin disease virus
+\todoit
 
-Reference-based mapping pipelines
+* Reference-based mapping pipelines\\
+- dynamic choice of ref.
+- avoiding assembly for large genome
+- choice of tools reliable vs. new/fast
+- shows that application and transfer of sars cov 2 pipelines makes sense
+* Downstream analyses\\
+- variant calling
+- phylogeny
+- gene annotation
+- lineage assignment
+
 \begin{itemize}
     \item reference-based mapping pipelines for surveillance
     \item ready-to-use, require user interaction at times to pick suitable reference sequence
     \item transfer of knowledge from SARS-CoV-2 pipelines to other viruses
     \item on Galaxy, poxvirus WF on IWC for testing and versioning
 \end{itemize}
-
-\todoit
 
 \subsubsection*{Poxvirus Analysis}
 \ac{LSDV} interesting for all poxviruses and adjustable due to \acp{ITR} and tiled-amplicon approach \\
@@ -23,7 +33,7 @@ single sample vs. multi sample (reality check, what is needed? maybe multiple sa
 \ac{AIV} downstream - everything is possible. Highlight key minor assets that indicate adaption to mammals -> databases needed to check against, detect mutation of isolates? \\
 Generally: annotate on amino acid layer (most information) \\
 
-AIV: Choice of reference, why not BLAST or lookup in GISAID with many hundereds of thousands of RNA virus genomes; \\
+AIV: Choice of reference (issue of reference ambiguity), why not BLAST or lookup in GISAID with many hundereds of thousands of RNA virus genomes; \\
 AIV: Alternatives, such as read classification by mapping to a large database of influenza sequences and subsequent de novo assembly can help to resolve this issue, such pipelines are often complex, slow, and require expertise that is not necessarily available in routine
 surveillance or public health laboratories. Secondly, even if bioinformatics pipelines are chosen judiciously, sequences of zoonotic origin may fail to be identified, resulting in a dataset that appears to below coverage, missing segments, or missing potential future pandemic reassortments. Furthermore, even with recent assembly programs, misassembly can occur.
 
@@ -59,11 +69,12 @@ BWA-MEM vs. BWA-MEM2 for small viral genomes: no big speed gain, error-prone as 
 % Kraken2 vs. VAPOR; 
 % Efficiency: LoFreq vs. iVar consensus; both consensus identification methods using the same site-specific depth threshold
 
-% If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time sensitive for large viral genomes. The presented pipelines could be used in a broad context for the use in many laboratories.
 % building index is expensive (BWT)
 \section{Limitations}
+\todoit
 \begin{itemize}
     \item Illumina seq. data
+    \item VAPOR 
     \item amplicon scheme for poxviruses
     \item mapping-based approach reaches its limits for FMDV -> requires user interaction
     \item AIV and FMDV not tested with many samples
