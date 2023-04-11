@@ -1,6 +1,7 @@
 \chapter*{Appendix}
 \label{chap:appendix}
 
+\vspace*{-16pt}
 \refstepcounter{section}
 \section*{\thesection \quad Links to Workflows and Additional Materials}
 \hspace*{-18pt}All workflows in Galaxy-specific GA and CWL formats are available on GitHub:\\
@@ -26,8 +27,31 @@
 
 \refstepcounter{subsection}
 \subsection*{\thesubsection \quad Avian Influenza Virus Workflow}
-\label{sec:apx-aiv-links}
 
+\refstepcounter{subsubsection}
+\subsubsection*{\thesubsubsection \quad Avian Influenza Virus Reference Collection}
+\begin{table}[ht!]
+	\begin{tabular}{@{}llcccccc@{}}
+	\toprule
+					 &                   & \multicolumn{1}{l|}{}                                                           & \multicolumn{2}{c|}{\textbf{Filter criteria \textsuperscript{2}}}                                                                                                                    & \multicolumn{3}{c}{\textbf{Reference collection}}                                                                                                                                                \\ \midrule
+	\multicolumn{2}{l}{Segment} & \multicolumn{1}{l|}{Length} & \multicolumn{1}{l}{\begin{tabular}[c]{@{}l@{}}Minimum\\ length\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Maximum\\ length\end{tabular}} & \multicolumn{1}{l}{\begin{tabular}[c]{@{}l@{}}\# of\\ sequences\end{tabular}} & \multicolumn{1}{l}{Length range} & \multicolumn{1}{l}{\begin{tabular}[c]{@{}l@{}}Mean\\ length\end{tabular}} \\ \midrule
+	1                & PB2               & \multicolumn{1}{c|}{2 316}                                                      & 1 945                                                                          & \multicolumn{1}{c|}{2 432}                                                      & 17 714                                                                        & 2 244 - 2 417                      & 2 306.7                                                                     \\
+	2                & PB1               & \multicolumn{1}{c|}{2 316}                                                      & 1 945                                                                          & \multicolumn{1}{c|}{2 432}                                                      & 17 355                                                                        & 2 265 - 2 414                      & 2 304.9                                                                     \\
+	3                & PA                & \multicolumn{1}{c|}{2 208}                                                      & 1 766                                                                          & \multicolumn{1}{c|}{2 318}                                                      & 17 569                                                                        & 1 905 - 2 275                      & 2 192.4                                                                     \\
+	\textbf{4}       & \textbf{HA}       & \multicolumn{1}{c|}{\textbf{1 840}}                                             & \textbf{1 401}                                                                 & \multicolumn{1}{c|}{\textbf{1 840}}                                             & \textbf{20 753}                                                               & \textbf{1 659 - 1 805}             & \textbf{1 717.5}                                                            \\
+	5                & NP                & \multicolumn{1}{c|}{1 540}                                                      & 1 232                                                                          & \multicolumn{1}{c|}{1 617}                                                      & 16 024                                                                        & 1 440 - 1 616                      & 1 529.9                                                                     \\
+	\textbf{6}       & \textbf{NA}       & \multicolumn{1}{c|}{\textbf{1 434}}                                             & \textbf{1 147}                                                                 & \multicolumn{1}{c|}{\textbf{1 506}}                                             & \textbf{17 646}                                                               & \textbf{1 308 - 1 498}             & \textbf{1 418.8}                                                            \\
+	7                & MP                & \multicolumn{1}{c|}{1 002}                                                      & 801                                                                            & \multicolumn{1}{c|}{1 052}                                                      & 14 684                                                                        & 979 - 1 047                        & 1 001.0                                                                     \\
+	8                & NS                & \multicolumn{1}{c|}{865}                                                        & 692                                                                            & \multicolumn{1}{c|}{908}                                                        & 15 762                                                                        & 752 - 907                          & 860.9                                                                       \\ \midrule
+	\multicolumn{8}{l}{\begin{tabular}[c]{@{}l@{}}\textsuperscript{1} For strain A/swine/Iowa/18Tosu0505/2018(H1N1).\\\textsuperscript{2} Minimum cutoff length is 80\% of segment length, maximal cutoff length is \\105\% of segment length.\\\end{tabular}}                                                                                                                                                                                                                                                                                
+	\end{tabular}
+	\caption{Summary of reference collection obtained from search criteria on the NCBI Influenza Virus Database.}
+ \label{tab:apx-aiv-ref}
+\end{table}
+
+\refstepcounter{subsubsection}
+\subsubsection*{\thesubsubsection \quad Avian Influenza Virus Workflow Links}
+\label{sec:apx-aiv-links}
 \begin{itemize}
 	\setlength{\itemsep}{-0.4cm}
 	\item Galaxy EU:\\
