@@ -21,7 +21,6 @@
 *.mtc
 *.mtc1
 *.out
-*.pdf
 *.synctex.gz
 *.toc
 **/*.drawio
