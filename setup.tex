@@ -13,15 +13,10 @@
     % ------------------- layout, default -------------------
     % adjust the style of float's captions, separated from text to improve readabilty
     \usepackage[labelfont=bf, labelsep=colon, format=hang, textfont=singlespacing]{caption}
-    % With format = hang your caption will look like this:
-    % Figure 1: Lorem ipsum dolor sit amet,
-    %           consectetuer adipiscing elit.
-    %           Ut purus elit, vestibulum
-    % If you instead want
-    % Figure 1: Lorem ipsum dolor sit amet,
-    % consectetuer adipiscing elit. Ut purus
-    % elit, vestibulum
-    % change to format=plain
+    \usepackage{subcaption}
+
+    \usepackage{rotating}
+
     \usepackage{chngcntr}  % continuous numbering of figures/tables over chapters
     \counterwithout{equation}{chapter}
     \counterwithout{figure}{chapter}
@@ -40,7 +35,7 @@
 
     \usepackage{array}  % custom format per column in table - needed on the title page
     \usepackage{graphicx}
-    \usepackage{subfig}  % divide figure, e.g. 1(a), 1(b)...
+    % \usepackage{subfig}  % divide figure, e.g. 1(a), 1(b)...
     \usepackage{amsmath}  % |
     \usepackage{amsthm}   % | math, bmatrix etc
     \usepackage{amsfonts} % |

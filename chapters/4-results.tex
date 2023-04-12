@@ -72,8 +72,43 @@ After starting the workflow with one sample each, the paired-end reads are prepr
 
 The \texttt{VAPOR} search was able to successfully identify the avian influenza virus subtypes present in each sample: for the H5N8 sample, the most similar sequence of HA segment origins from a sample with the H5 subtype, while the most similar sequence of the NA segment origins from a sample with the N8 subtype. Similarly, the H4N6 sample was correctly identified. The results of the \texttt{VAPOR} run for the HA and NA genes are summarised in~\tabref{tab:4-aiv-vapor}.
 
-\todo{consensus reference, snipit plots, IQ-Tree for \ac{HA}/\ac{NA}, 
-point out output for downstream analyses}
+S8: \\
+H5N8 sample: HA gene: 1 SNP compared to reference sequence chosen by VAPOR (MZ166252) at position 1002 \\
+H5N8 sample: NA gene: 1 SNP compared to reference sequence chosen by VAPOR (MZ166270) at position 497
+
+S4: \\
+H4N6 sample: HA gene: 30 SNPs compared to reference sequence chosen by VAPOR (LC121412) at positions xyz \\
+H4N6 sample: NA gene: 29 SNPs compared to reference sequence chosen by VAPOR (MW419994) at positions xyz (there are better)
+
+\todo{consensus sequence (no Ns), IQ-Trees for \ac{HA}/\ac{NA}}
+
+
+\begin{figure}
+\centering
+    \begin{subfigure}[b]{1.1\textwidth}
+        \includegraphics[width=1.0\linewidth]{media/4-aiv-snipit-s8-4-ha.png}
+        \caption{SNPs of HA gene of H5N8 sample.}
+    \label{fig:4-aiv-snipit-s8-ha}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{1.1\textwidth}
+        \centering
+        \includegraphics[width=1.0\linewidth]{media/4-aiv-snipit-s8-6-na.png}
+    \caption{SNPs of NA gene of H5N8 sample.}
+    \label{fig:4-aiv-snipit-s8-na}
+    \end{subfigure}
+    \caption[Visual summaries of SNPs in H5N8 sample.]{Visual summaries of SNPs in H5N8 sample. The consensus sequence of the gene is the reference at the top of each plot.}
+\label{fig:4-aiv-snipit-s8}
+\end{figure}
+
+% todo: move to appendix?
+\begin{sidewaysfigure} % todo: look that this is on an even page (read position numbers)
+    \centering
+    \subfloat[SNPs of HA gene of H4N6 sample.]{\includegraphics[width=1.0\textheight]{media/4-aiv-snipit-s4-4-ha.png}\label{fig:4-aiv-snipit-s4-ha}} \\
+    \subfloat[SNPs of NA gene of H4N6 sample.]{\includegraphics[width=1.0\textheight]{media/4-aiv-snipit-s4-6-na.png}\label{fig:4-aiv-snipit-s4-na}}
+    \caption[Visual summaries of SNPs in H4N6 sample.]{Visual summaries of SNPs in H4N6 sample. The consensus sequence of the gene is the reference at the top of each plot.}
+\label{fig:4-aiv-snipit-s4}
+\end{sidewaysfigure}
 
 \section{FMDV Workflows with Asia-1, A, SAT-1 and SAT-2 Samples}
 The samples used for workflow validation are downloaded from the \ac{NCBI} and were chosen exemplatory for four of the seven different \ac{FMDV} serotypes. All four samples were sequenced on an Illumina NextSeq 550 platform. Two samples (Asia-1 serotype, SRR17960053 and A serotype, SRR18751245) were taken from infected cattle and buffalo during an outbreak in Pakistan from 2008 to 2012. One sample (SAT-1 serotype, SRR18685689) was isolated from buffaloes in Kenya in 2016 and plaque purified before sequencing, and the fourth sample (SAT-2 serotype, SRR9328470) was taken from an \ac{FMD} outbreak in Nigeria in 2014. \\
