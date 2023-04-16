@@ -1,110 +1,28 @@
 \chapter{Discussion}\label{chap:discussion}
-\todoit
+% rephrase problems/questions
+- despite mass vaccination and considerable information available about viruses, disease outbreaks cause major losses and threats to livestock industry worlwide
+- sequence analysis of livestock viruses to identify source outbreaks, monitor antigenic changes within virus strains, continued surveillance, vaccine matching, vaccine quality control
+- build capacities in diagnostics, epidemiology, economics to improve information on the nature of virus circulation in the country's and region's specific environment
+- provide public, transparent infrastructure for valuable modern surveillance methods -> work with NGS for WGS -> WGS allows for comprehensive genetic information, complete view of the genetic makeup including genes, structural variations -> use information to identify disease-causing mutations, determine relationships between populations and samples
+- demands for these workflows are: easy to use, fast, reliable, adaptable, rely on sars-cov-2 research
+- ZODIAC as scope for development of 3 Galaxy workflows for poxviruses, AIV, FMDV with accompanying training resources to empower employees to meaningful interpretation and act based on sample-specific insights, ultimately early detection and protect public health/avoid economic losses
 
 \section{Contribution to the Field}
-We propose three Galaxy workflows for genomic analysis of NGS-generated data for poxviruses, avian influenza virus and lumpy skin disease virus
-\todoit
+% Summarise key findings: both the significant and non-significant results
+- 3 workflows for livestock viruses of relevance, objective to construct whole genome by curative methods from NGS raw reads to consensus sequence, without required user knowledge that reuse concepts from sars-cov-2 workflows 
+- poxvirus wf: new approach that requires sequencing in tiling amplicon manner, two pools, reference-based mapping, avoids assembly, reference sequence is ok to choose because mutation rate is low for poxviruses, consensus calling. challenge for poxviruses: two identical ITRs, solved by tiling amplicon approach. tested with LSDV samples, multisample workflow, analysis can be continued by subsequent analyses. WGS on lsdv isolates is essential to capture genetic variation all at once, in the past it was shown that outbreaks and vaccines are linked, careful monitoring required. workflow published on iwc/dockstore/workflowhub for versioning and distribution, additional training material that guides through the workflow step by step. both for beginners and experts to adapt and meaningful usage
+- aiv wf: objective is to construct whole genome from NGS raw reads, challenge: find good reference sequence for mapping. new method for reference-based mapping that does not require the user to select a reference and imply knowledge about the virus strain in the isolate, or arbitrary selection; avoid de novo assembly, thus: hybrid reference that accounts for influenza gene-specific "best matching reference" on a high resolution level. use database of thousands of possible reference sequences and by vapor approach, select and stack reference for mapping. downstream components for consensus construction is similar to sars-cov-2 workflows and proves to be efficiently work for our two AIV test samples. for aiv, wgs is in high demand for threat of reassortment that causes adaption of the virus to mammals and spillover to humans, detection of mutation and study of key minor assets. with phylogenetic classification and lineage assignment gain insight on relations, geo/temporal clustering, tracing of single outbreaks and routes of transmission, virus origin. more detailed than "only" subtype identification, wgs in aiv surveillance is very crucial for worldwide monitoring. many other downstream options from the generated workflow outputs
+- fmdv wf: whole genome construction for such small virus genome with high genetic variation within one serotype and even "sub-type" makes it even more difficult to select reference sequence for mapping, short genome therefore tradeoff to use de novo assembly on the raw reads to construct a sequence to blast on, user is asked to pick result - still does not require much knowledge because of accompanying guidelines to be followed, wf is capable of detecting contamination or co-infection in the isolate. use blast result to download reference sequence for mapping in second workflow, reuse sars-cov-2 for proven to work consensus sequence construction. new approach in galaxy with low cost and time requirements, still serving base-by-base information for the sequenced sample. again phylogeny and other analyses are possible depending on the user. wf tested with four samples of different serotypes, consensus sequence was constructed and depends on number of raw reads for coverage, co-infection was detected, virus specific regions of polyc/polya tracts and termini are ambiguous and always pose challenge in assembly, still valuable insight to whole genome.
 
-* Reference-based mapping pipelines\\
-- dynamic choice of ref.
-- avoiding assembly for large genome
-- choice of tools reliable vs. new/fast
-- shows that application and transfer of sars cov 2 pipelines makes sense
-* Downstream analyses\\
-- variant calling
-- phylogeny
-- gene annotation
-- lineage assignment
+- summary: three new wgs workflows on galaxy, ready-to-use, embedded with additional resources, adaptable and transparent, allow for studying samples on base level, provide essential information for surveillance measures that are needed for modern virus containment
+- highlight reference-based mapping vs. assembly
+- contribute by open source concept on galaxy that is already known worldwide in bioinformatics, integrate into routine surveillance
 
-\begin{itemize}
-    \item reference-based mapping pipelines for surveillance
-    \item ready-to-use, require user interaction at times to pick suitable reference sequence
-    \item transfer of knowledge from SARS-CoV-2 pipelines to other viruses
-    \item on Galaxy, poxvirus WF on IWC for testing and versioning
-\end{itemize}
+% Interpret findings: Interpretation of results, explain what results mean and how they relate to research questions, describe any patterns, relationships in the data
 
-\subsubsection*{Poxvirus Analysis}
-\ac{LSDV} interesting for all poxviruses and adjustable due to \acp{ITR} and tiled-amplicon approach \\
-further pox viruses, pipelines can be more or less easily applied/adjusted \\
-single sample vs. multi sample (reality check, what is needed? maybe multiple samples from one outbreak)
-
-
-\subsubsection*{Avian Influenza Virus Analysis}
-\ac{AIV} downstream - everything is possible. Highlight key minor assets that indicate adaption to mammals -> databases needed to check against, detect mutation of isolates? \\
-Generally: annotate on amino acid layer (most information) \\
-
-AIV: Choice of reference (issue of reference ambiguity), why not BLAST or lookup in GISAID with many hundereds of thousands of RNA virus genomes; \\
-AIV: Alternatives, such as read classification by mapping to a large database of influenza sequences and subsequent de novo assembly can help to resolve this issue, such pipelines are often complex, slow, and require expertise that is not necessarily available in routine
-surveillance or public health laboratories. Secondly, even if bioinformatics pipelines are chosen judiciously, sequences of zoonotic origin may fail to be identified, resulting in a dataset that appears to below coverage, missing segments, or missing potential future pandemic reassortments. Furthermore, even with recent assembly programs, misassembly can occur.
-
-However using an optimal reference is ideal, since for later advanced applications, such as transmission events, or study of intra-host variation, the closest possible reference may be necessary. Whilst BLAST performed well for individual read classification, it is often too slow for general application. With regards to de novo assembly, in the cases where not enough initial data exists to assemble fragments, mapping allows analysis of limited fragments. Furthermore, assembly of virus genomes can be slow, often taking several days for a single sample when contaminant reads are present.
-
-Make phylogenetic trees publicly accessible, not one sample per strain but in high resolution and greater details, strains from different countries,
-single sample vs. multi sample (reality check, what is needed? maybe multiple samples from one outbreak) 
-
-
-\subsubsection*{Foot-and-mouth Disease Virus Analysis}
-If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time sensitive for large viral genomes. However small viral genomes such as FMDV perform reasonably faster in a de novo assembly than larger DNA genomes and achieve sufficiently good results. Long assembled contigs can be used for choosing a good, representative reference sequence that can be used for mapping. BLAST provides a large database however needs regular updates to deliver current hits and proper surveillance, also relevant for downstream/phylogeny.
-Workflow in two parts requires knowledge and interaction by the user -> error prone?
-
-Nevertheless this is the most suitable approach for high resolution genomic analysis, as a direct mapping fails due to not fitting reference sequences
-
---------------\\
-Workflows that solve common problems, provide useful information, are user-friendly, customisable, extendable
-
-limitations \\
-
-``The high sensitivity of the \ac{NGS} technology ensures that major kinds of viral pathogens in mixed samples can be detected.''
-One strength of \ac{NGS} is that it can be used to detect emerging viral diseases with a high genetic variation. Like \ac{AIV}. Since it can analyse a full sequence instead of targeting a specific gene. -> makes sense to use virus-specific primers for \ac{PCR} or \ac{NGS} 
-
-``Comparison of the whole genome sequences of recent \ac{LSDV} isolates from the 2015–2016 epidemic in southern Europe revealed only a limited number of point mutations between the isolates'' \ac{WGS} is essential to capture all genetic variation at once
-
-In sequencers, false positive variants (\ac{FPV}) must be avoided (happens when too many amplification cycles are made)
-
-BWA-MEM vs. BWA-MEM2 for small viral genomes: no big speed gain, error-prone as a new tool. preferably stick to known tools in Galaxy that are proved to work well and have a maintenance
-
--> caveat of tools with small development teams: abundance of technological advancements or error solving, but dependence on the reliability -> choose established software
-
-% Efficiency: Assembly vs. Mapping; efficiency
-% Kraken2 vs. VAPOR; 
-% Efficiency: LoFreq vs. iVar consensus; both consensus identification methods using the same site-specific depth threshold
-
-% building index is expensive (BWT)
-
-FMDV: This user-involving method ensures that the consensus sequence for each sample is generated based on the closest available reference sequence, which can improve the accuracy and reliability of the final assembly. 
+% Discuss the implications of the findings: broader implications of research findings, explain how research contributes to the existing knowledge in the field and how it could impact future research, practice, or policy
 
 \section{Limitations}
-\todoit
-\begin{itemize}
-    \item Illumina seq. data
-    \item VAPOR 
-    \item amplicon scheme for poxviruses
-    \item mapping-based approach reaches its limits for FMDV -> requires user interaction
-    \item AIV and FMDV not tested with many samples
-\end{itemize}
-
+% Acknowledge limitations: discuss any potential sources of bias or confounding that could have affected the results, suggest ways to address these limitations in future research
 
 \section{Future Directions}
-\todoit
-\begin{itemize}
-    \item validate with more samples/tests
-    \item extend to more NGS datatypes
-    \item replace tools with faster/newer tools (if available, stable and reliable on Galaxy)
-    \item apply to more viruses
-    \item enhance surveillance, write more training material, use pipelines in production
-\end{itemize}
-
-further validation and improvement of the developed pipelines, application to other viral livestock diseases, integration with existing surveillance systems; expand the \ac{VETLAB} network to entitle even more professionals to professionally analyse their samples.
-more testing, more training material
-
-workflows offer many possible directions for downstream analysis that could be integrated into the main workflows if needed:
-
-* consensus sequence for each segment -> compare consensus sequence to others can help identify outbreaks and patterns of transmission, get more insights how the virus spreads and its evolution
-* Prokka annotation file. Predict the protein coding regions of the virus, to understand the function of the viral proteins and how they interact with host cells
-* SNPs relative to the reference sequence
-* \ac{MSA} and phylogenetic tree for broad or detailed phylogenetic analysis and understand evolutionary relationships between the sample and other strains. could also use clusters or subtypes within the sample. make trees available so that new isolates can be immediately arranged
-* more visualisation of the data
-* long-term objective: build public high-resolution databases to enable researchers to detect mutation of an isolate. this is crucial for a global surveillance system to work.
-* develop workflows for the same purpose that work with other NGS sequencing data (ONT, PacBio etc.)
-
-fine-tune settings of individual tools, improve quality of tools (VAPOR)
