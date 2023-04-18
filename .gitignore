@@ -4,6 +4,7 @@
 *.aux
 *.bbl
 *.blg
+*.drawio
 *.dvi
 *.fdb_latexmk
 *.fls
@@ -23,5 +24,4 @@
 *.out
 *.synctex.gz
 *.toc
-**/*.drawio
 .vscode
