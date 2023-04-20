@@ -1,21 +1,3 @@
-\chapter{Discussion}\label{chap:discussion}
-\todoit
-
-\section{Contribution to the Field}
-\todoit
-We propose three Galaxy workflows for genomic analysis of NGS-generated data for poxviruses, avian influenza virus and lumpy skin disease virus
-
-* Reference-based mapping pipelines\\
-- dynamic choice of ref. \\
-- avoiding assembly for large genome \\
-- choice of tools reliable vs. new/fast \\
-- shows that application and transfer of sars cov 2 pipelines makes sense \\
-* Downstream analyses\\
-- variant calling\\
-- phylogeny\\
-- gene annotation\\
-- lineage assignment\\
-
 \begin{itemize}
     \item reference-based mapping pipelines for surveillance
     \item ready-to-use, require user interaction at times to pick suitable reference sequence
@@ -25,22 +7,18 @@ We propose three Galaxy workflows for genomic analysis of NGS-generated data for
 
 \subsubsection*{Poxvirus Analysis}
 \ac{LSDV} interesting for all poxviruses and adjustable due to \acp{ITR} and tiled-amplicon approach \\
-further pox viruses, pipelines can be more or less easily applied/adjusted \\
-single sample vs. multi sample (reality check, what is needed? maybe multiple samples from one outbreak)
+further pox viruses, pipelines can be more or less easily applied/adjusted 
 
 
 \subsubsection*{Avian Influenza Virus Analysis}
-\ac{AIV} downstream - everything is possible. Highlight key minor assets that indicate adaption to mammals -> databases needed to check against, detect mutation of isolates? \\
-Generally: annotate on amino acid layer (most information) \\
 
 AIV: Choice of reference (issue of reference ambiguity), why not BLAST or lookup in GISAID with many hundreds of thousands of RNA virus genomes; \\
 AIV: Alternatives, such as read classification by mapping to a large database of influenza sequences and subsequent de novo assembly can help to resolve this issue, such pipelines are often complex, slow, and require expertise that is not necessarily available in routine
-surveillance or public health laboratories. Secondly, even if bioinformatics pipelines are chosen judiciously, sequences of zoonotic origin may fail to be identified, resulting in a dataset that appears to below coverage, missing segments, or missing potential future pandemic reassortments. Furthermore, even with recent assembly programs, misassembly can occur.
+surveillance or public health laboratories. S
 
-However using an optimal reference is ideal, since for later advanced applications, such as transmission events, or study of intra-host variation, the closest possible reference may be necessary. Whilst BLAST performed well for individual read classification, it is often too slow for general application. With regards to de novo assembly, in the cases where not enough initial data exists to assemble fragments, mapping allows analysis of limited fragments. Furthermore, assembly of virus genomes can be slow, often taking several days for a single sample when contaminant reads are present.
+However using an optimal reference is ideal, since for later advanced applications, such as transmission events, or study of intra-host variation, the closest possible reference may be necessary. Whilst BLAST performed well for individual read classification, it is often too slow for general application. With regards to de novo assembly, in the cases where not enough initial data exists to assemble fragments, mapping allows analysis of limited fragments. 
 
 Make phylogenetic trees publicly accessible, not one sample per strain but in high resolution and greater details, strains from different countries,
-single sample vs. multi sample (reality check, what is needed? maybe multiple samples from one outbreak) 
 
 
 \subsubsection*{Foot-and-mouth Disease Virus Analysis}
@@ -74,18 +52,16 @@ BWA-MEM vs. BWA-MEM2 for small viral genomes: no big speed gain, error-prone as 
 FMDV: This user-involving method ensures that the consensus sequence for each sample is generated based on the closest available reference sequence, which can improve the accuracy and reliability of the final assembly. 
 
 \section{Limitations}
-\todoit
 \begin{itemize}
-    \item Illumina seq. data
+    \item only Illumina seq. data
     \item VAPOR 
     \item amplicon scheme for poxviruses
-    \item mapping-based approach reaches its limits for FMDV -> requires user interaction
-    \item AIV and FMDV not tested with many samples
+    \item mapping-based approach reaches its limits for FMDV -> requires user interaction and choice of ref. 
+    \item AIV, poxvirus and FMDV not tested with many samples
 \end{itemize}
 
 
 \section{Future Directions}
-\todoit
 \begin{itemize}
     \item validate with more samples/tests
     \item extend to more NGS datatypes
