@@ -21,7 +21,7 @@ However using an optimal reference is ideal, since for later advanced applicatio
 Make phylogenetic trees publicly accessible, not one sample per strain but in high resolution and greater details, strains from different countries,
 
 
-\subsubsection*{Foot-and-mouth Disease Virus Analysis}
+\subsubsection*{Foot-and-mouth Disease Virus Analysis} 
 If the goal in a broad and rapid surveillance is a high number of sample throughput and analysis, assembly is too cost and time sensitive for large viral genomes. However small viral genomes such as FMDV perform reasonably faster in a de novo assembly than larger DNA genomes and achieve sufficiently good results. Long assembled contigs can be used for choosing a good, representative reference sequence that can be used for mapping. BLAST provides a large database however needs regular updates to deliver current hits and proper surveillance, also relevant for downstream/phylogeny.
 Workflow in two parts requires knowledge and interaction by the user -> error prone?
 
@@ -52,20 +52,27 @@ BWA-MEM vs. BWA-MEM2 for small viral genomes: no big speed gain, error-prone as 
 FMDV: This user-involving method ensures that the consensus sequence for each sample is generated based on the closest available reference sequence, which can improve the accuracy and reliability of the final assembly. 
 
 \section{Limitations}
+AIV: useful for downstream? many opportunities -> need for high resoluted databases to detect mutatinos in isolates
+FMDV: 2 parts requires user interaction, polyc region macht immer schwierigkeiten beim mapping (grenze von mapping, da immer ambiguous). für blast: benutze virale genomdatenbank und nicht riesige komplett nucl.
 \begin{itemize}
     \item only Illumina seq. data
     \item VAPOR 
-    \item amplicon scheme for poxviruses
     \item mapping-based approach reaches its limits for FMDV -> requires user interaction and choice of ref. 
     \item AIV, poxvirus and FMDV not tested with many samples
+    \item missing: annotation on amino acid layer
+    \item avoid ivar consensus -> many errors, for sars-cov-2 extra wf mit lofreq vcf
+    \item iq-tree ist nicht das beste long-term, eher Usher (aber braucht erst Galaxy tool update) oder pangolin strategisch erweitern auf non-covid viruses
+    \item use newer/faster versions of tools, e.g. bwa-mem2 instead of bwa-mem (when tested and stable on galaxy)
+    \item ivar consensus vs. LoFreq indel qual. (mit ivar cons. verliert man die möglichkeit lofreq variants zu callen, aber ist halt schneller, lofreq ist genauer)
 \end{itemize}
-
 
 \section{Future Directions}
 \begin{itemize}
+    \item possibilities for downstream analyses are broad: 
     \item validate with more samples/tests
-    \item extend to more NGS datatypes
-    \item replace tools with faster/newer tools (if available, stable and reliable on Galaxy)
+    \item extend to work with more NGS platforms
+    \item replace tools with faster/newer tools (if available, stable and reliable on Galaxy) (esp. poxvirus/ivar, vapor)
+    \item poxvirus wf in two parts: extract differing regions of genome to get "correct" ref. for capv
     \item apply to more viruses
     \item enhance surveillance, write more training material, use pipelines in production
 \end{itemize}
@@ -82,5 +89,3 @@ workflows offer many possible directions for downstream analysis that could be i
 * more visualisation of the data
 * long-term objective: build public high-resolution databases to enable researchers to detect mutation of an isolate. this is crucial for a global surveillance system to work.
 * develop workflows for the same purpose that work with other NGS sequencing data (ONT, PacBio etc.)
-
-fine-tune settings of individual tools, improve quality of tools (VAPOR)
