@@ -210,3 +210,30 @@ These tools have been wrapped in the Galaxy Tools IUC to make them available on 
 	\caption[Phylogenetic trees of HA and NA genes for H5N8 sample.]{Phylogenetic trees of HA and NA genes for H5N8 sample, indicating linkage to \textit{A/Mule\_duck/France} in both the HA and NA segments.}
 \label{fig:apx-aiv-trees-s8}
 \end{figure}
+
+\begin{figure}[ht!]
+	\refstepcounter{section}
+	\section*{\thesection \quad Results of Tool Profiling for BWA-MEM and rnaviralSPAdes Runs}
+    \centering
+	\begin{subfigure}[b]{1.0\textwidth}
+        \includegraphics[width=1.0\textwidth]{media/4-profiling-cputime.png}
+        \caption{Profiling of assembly vs. mapping, comparison of CPU runtimes for 4 FMDV and 2 LSDV samples.}
+        \label{fig:4-profiling-cpu}
+    \end{subfigure}
+	\begin{subfigure}[b]{1.0\textwidth}
+        \includegraphics[width=1.0\textwidth]{media/4-profiling-maxmem.png}
+        \caption{Profiling of assembly vs. mapping, comparison of maximal memory usage for 4 FMDV and 2 LSDV samples.}
+        \label{fig:4-profiling-mem}
+    \end{subfigure}
+    \caption{Profiling of assembly vs. mapping.}
+\end{figure}
+\begin{figure}[ht]\ContinuedFloat
+    \centering
+	\begin{subfigure}[b]{1.0\textwidth}
+        \includegraphics[width=1.0\textwidth]{media/4-profiling-wallclock.png}
+        \caption{Profiling of assembly vs. mapping, comparison of job wall clock time for 4 FMDV and 2 LSDV samples.}
+        \label{fig:4-profiling-wallclock}
+    \end{subfigure}
+    \caption{Profiling of assembly vs. mapping (cont.).}
+    \label{fig:apx-profiling}
+\end{figure}

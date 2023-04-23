@@ -68,9 +68,11 @@ The test samples 20L70 and 20L81 are shown to be from this recombinant vaccine s
 \label{tab:4-capv}
 \end{table}
 
-To determine the relationship among the used reference sequences, a distance matrix as shown in~\tabref{tab:4-capv} shows the four different known clades within the Capripoxvirus genus. While the \ac{LSDV}-Neethling strain and KSGP strain are very closely related, the recombinant \ac{LSDV}-vaccine strain differs from this clade. \ac{SPPV} and \ac{GTPV} clades are shown to be more different to the \ac{LSDV} clades. By converting a multiple sequence alignment of the reference used for mapping, the constructed consensus sequences and the \ac{LSDV}-vaccine reference (Herbivac, GenBank: KX764644.1) to a \ac{VCF} file and detect variants relative to the vaccine strain. The tool \texttt{faToVcf} was wrapped as part of this work to make it accessible from within Galaxy. The tool was initially published by the University of California, Santa Cruz (UCSC) and generates a \ac{VCF} file.\\
-Using this approach to compare the consensus sequences, constructed by mapping the 20L70 and 20L81 sample reads to other \ac{CaPV} reference sequences, and comparing variation sites relative to the \ac{LSDV}-vaccine strain, the found sites show different locations that differentiate the clade from the recombinant strain. The used primer scheme was adapted for  mapping to \ac{SPPV} and \ac{GTPV} due to shorter genome lengths and different primer locations.Although the \texttt{faToVcf} tool is not capable of displaying indels, it clearly shows unmapped regions and the \acp{SNP} relative to the vaccine strain.
+To determine the relationship among the used reference sequences, a distance matrix as shown in~\tabref{tab:4-capv} shows the four different known clades within the Capripoxvirus genus. While the \ac{LSDV}-Neethling strain and KSGP strain are very closely related, the recombinant \ac{LSDV}-vaccine strain differs from this clade. \ac{SPPV} and \ac{GTPV} clades are shown to be more different to the \ac{LSDV} clades. By converting a multiple sequence alignment of the reference used for mapping, the constructed consensus sequences and the \ac{LSDV}-vaccine reference (Herbivac, GenBank: KX764644.1) to a \ac{VCF} file and detect variants relative to the vaccine strain. The tool \texttt{faToVcf} was wrapped as part of this work to make it accessible from within Galaxy. The tool was initially published by the University of California, Santa Cruz (UCSC) and generates a \ac{VCF} file that holds information about single-nucleotide substitutions.\\
+Using this approach to compare the consensus sequences, constructed by mapping the 20L70 and 20L81 sample reads to other \ac{CaPV} reference sequences, and comparing variation sites relative to the \ac{LSDV}-vaccine strain, the found sites show different locations that differentiate the clade from the recombinant strain. The used primer scheme was adapted for mapping to \ac{SPPV} and \ac{GTPV} due to shorter genome lengths and different primer locations. Although the \texttt{faToVcf} tool is not capable of displaying indels, it clearly shows unmapped regions and the \acp{SNP} relative to the \ac{LSDV} strain. The found %%%%%%
 
+\todo{1. list Ns for 20L70/20L81 for: Neethling, SPPV, GTPV} \\
+\todo{2. find positions within these Ns that occur due to A) missing reference (- in MSA of Ref. and LSDV strain) or B) low coverage and actual non-consensus}  \\
 SPPV compared to recomb. LSDV vaccine strain (Ns): (20L81)
 - 18,479-18,498
 - 110,083-110,106
@@ -80,7 +82,7 @@ SPPV compared to recomb. LSDV vaccine strain (Ns): (20L70)
 - 110,090-110,113
 - 129,582-129,583 (low cov.?)
 
-The impact of the found \acp{SNP} was not examined because a gene annotation file for poxviruses with genomic features on th amino acid layer was not available.
+The impact of the found \ac{SNP} sites was not examined because a gene annotation file for poxviruses with genomic features on th amino acid layer was not available.
 
 
 \section{AIV Workflow with H4N6 and H5N8 Samples}\label{sec:4-aiv}
@@ -110,7 +112,7 @@ After starting the workflow, the paired-end reads were preprocessed and serve as
     \toprule
     \multicolumn{1}{l}{\textbf{Segment}} & \multicolumn{2}{c}{\textbf{Proportion of query bases in reads}}                             & \multicolumn{2}{c}{\textbf{AIV subtype of hit}}                                         \\ \midrule
                                          & \multicolumn{1}{l}{\textbf{H4N6 sample}} & \multicolumn{1}{l}{\textbf{H5N8 sample}} & \multicolumn{1}{l}{\textbf{H4N6 sample}} & \multicolumn{1}{l}{\textbf{H5N8 sample}} \\ \cmidrule(l){2-5} 
-    HA                                   & 98.7\%                                    & 100.\%0                                      & H4                                       & H5                                       \\
+    HA                                   & 98.7\%                                    & 100.0\%                                      & H4                                       & H5                                       \\
     NA                                   & 98.7\%                                    & 100.0\%                                      & N6                                       & N8                                       \\ \bottomrule
     \end{tabular}
     \caption[Results of VAPOR run with AIV test samples.]{The best scoring sequence of the VAPOR run for each AIV test samples, indicating a perfect match (100\% of the query bases are in the reads) of the HA and NA segments of the H5N8 sample sequence, and almost all query bases of the H4N6 sample in the found sample.}    
@@ -154,10 +156,10 @@ After \textit{de novo} assembly with \texttt{rnaviralSPAdes}, contigs less than 
     \begin{tabular}{@{}lcccc@{}}
     \toprule
     \textbf{Sample} & \textbf{\begin{tabular}[c]{@{}c@{}}Alignment length\\{[}bases{]}\end{tabular} }   & \textbf{Query coverage} & \textbf{Identical matches} \\ \midrule
-    A              & 7602   & 92.21\%  & 94.87\%      \\
-    Asia-1         & 7690   & 99.10\%  & 96.74\%      \\
-    SAT-1          & 7331   & 100.0\%  & 93.77\%      \\
-    SAT-2          & 7669   & 99.65\%  & 91.42\%      \\ \bottomrule
+    A              & 7 602   & 92.21\%  & 94.87\%      \\
+    Asia-1         & 7 690   & 99.10\%  & 96.74\%      \\
+    SAT-1          & 7 331   & 100.0\%  & 93.77\%      \\
+    SAT-2          & 7 669   & 99.65\%  & 91.42\%      \\ \bottomrule
     \end{tabular}
     \caption[Results of the BLASTn run with four FMDV samples.]{Results of the BLASTn run with four FMDV samples. Query coverage refers to the percentage of identical matches in the alignment compared to the BLASTn hit, hereby indicating the quality of the alignment. Alignment length describes the alignment compared to the query length, indicating how much of the query sequence is covered with the alignment.}
 \label{tab:4-fmdv-blast}
@@ -184,41 +186,32 @@ With the \texttt{NCBI Accession Download} tool, the sequence of each sample that
 \end{table}
 
 For each of the testing samples, the accession numbers used as reference sequence for mapping with \texttt{BWA-MEM} are listed in~\tabref{tab:4-fmdv-map} as well as quality and coverage measures after mapping. As expected due to the low number of reads, the SAT-2 sample had a low mean coverage of {188.0\texttimes } and a relatively high error rate of 8.18\% compared to the other samples. Consensus sequences are accurately obtained for the Asia-1 and SAT-1 sample that each contain low-coverage regions in the 5' and 3' ends, so the consensus was lost with decreasing coverage in both genomic ends. Sample A has its only low coverage region immediately adjacent to the polyA tail at positions 7626--7634. The Asia-1 and SAT-1 samples show additional low coverage regions adjacent to the polyC tract (Asia-1 sample: genomic positions 372--383; SAT-1: 321--335). Using the same coverage threshold for consensus calling for a sample with a low amount of reads like SAT-2, the coverage criteria were not met in several regions (genomic positions 1--37, 293, 346--528, 3605--3639 and 8039--9131). The consensus sequences can be found in the Galaxy histories of the respective workflow runs for each sample which are linked in Supplementary~\secref{sec:apx-fmdv-links}. \\
-Part of the reported results after consensus construction is a summarising \acp{SNP} plot, produced by the \texttt{snipit} tool. Even though the emitted PNG is too large to display at once, it provides an overview of the distribution of \acs{SNP} relative to the reference sequence used for mapping. In case of a recombination event, where genetic material from two or more virus strains that are infecting the same cell combines to form a new strain, the distribution of \acp{SNP} in the plot would deviate from statistical expectations, in such that there occur regions of high genetic diversity or a sudden shift in allele frquency. Using the visual approach without further tools for identification or confirmation of recombination events is a fast method to detect recombination in the sample, however requires expertise in the expected pattern of variation based on the reference genome. Besides recombination events, the distribution of variation on the reference genome indicates how representative the reference sequence, selected based on the \ac{BLAST}n search, captures the aligned reads. If the reference sequence only covers a large part of the genome and not the entire length, it would be reflected in the plot by indicating large numbers of \acp{SNP}. In each \texttt{snipit} plot produced for the four test samples, a high number of \acp{SNP} are displayed, relating to the high mutation rate of \ac{FMDV}, yet not showing any irregularities that could indicate recombination events. The plots can be retrieved as part of the Galaxy histories of the test sample runs, which are linked in Supplementary~\secref{sec:apx-fmdv-links}.
+Part of the reported results after consensus construction is a summarising \acp{SNP} plot, produced by the \texttt{snipit} tool. Even though the emitted PNG is too large to display at once, it provides an overview of the distribution of \acs{SNP} relative to the reference sequence used for mapping. In case of a recombination event, where genetic material from two or more virus strains that are infecting the same cell combines to form a new strain, the distribution of \acp{SNP} in the plot would deviate from statistical expectations, in such that there occur regions of high genetic diversity or a sudden shift in allele frquency. Using the visual approach without further tools for identification or confirmation of recombination events is a fast method to detect recombination in the sample, however requires expertise in the expected pattern of variation based on the reference genome. Besides recombination events, the distribution of variation on the reference genome indicates how well the reference sequence, selected based on the \ac{BLAST}n search, captures the aligned reads on the whole genome. If the reference sequence only covers a large part of the genome and not the entire length, it would be reflected in the plot by indicating large numbers of \acp{SNP}. In each \texttt{snipit} plot produced for the four test samples, a high number of \acp{SNP} are displayed, relating to the high mutation rate of \ac{FMDV}, yet not showing any irregularities that could indicate recombination events. The plots can be retrieved as part of the Galaxy histories of the test sample runs, which are linked in Supplementary~\secref{sec:apx-fmdv-links}.
 
 \section{Workflow Profiling}
-\todoit Assembly vs. mapping\\
-for long/short genomes, for rnaviralSPAdes and BWA-MEM, compare CPU runtime and wall clock time, max.mem usage determines the scheduling on a cluster on galaxy (more requested memory means longer queuing times due to fewer available machines)
+For alignment of reads, reference-based approaches take considerable less amount of computational resources and absolute time to finish based on a reduced search space which is limited to the reference genome. In the presented workflows, reference-based mapping is the favored choice of alignment approach due to a reduced error correction possibly induced by suboptimally chosen references, and due to mapping tools running significantly faster than \textit{de novo} assemblers. To demonstrate differences in computational resources and job runtimes, we compare one commonly used reference-based mapping tool on Galaxy, \texttt{BWA-MEM}, and a \textit{de novo} assembler that is optimised for viral genomes, \texttt{rnaviralSPAdes}. While both tools implement graph-based algorithms, the efficiency of \texttt{BWA-MEM} lays in the construction of an index of the reference genome, and the mapping of the reads using a seed-and-extend approach~\cite{li2013aligning}. Conversely, the SPAdes algorithm uses a De Bruijn graph approach and constructs contigs from the reads based on a scoring function to evaluate the quality of contigs during the assembly process~\cite{bankevich2012spades}. \\
+To determine the computational resources and run times of both algorithms, three key metrics to compare performance are compared by the average value of ten identical runs on the Galaxy EU server. The parameters are CPU runtime, maximal memory usage and job wall clock time. The CPU runtime informs about the calculation time on the CPU machines, whereas the maximal memory usage provides insight into the 
+memory efficiency and most importantly determines the local machine on the server that the job is scheduled on, and lastly the wall clock time for a job which includes the queueing time and the job runtime and accounts for the full time that a user has to wait until the job appears as finished in the Galaxy history. The requested memory usage of a tool determines the machine that the job is clustered on on the Galaxy server, and the overall waiting time for the user could increase with larger requested memory space due to a smaller pool of possibly available machines that the job can be scheduled on.\\
+Expecting that mapping outperforms assembly in all means due to the more efficient algorithm, this may hold true for a specific virus, thus two viruses of different lengths are included in the comparison. We use four test samples of the 8.3 kbp long \ac{FMDV} and two test samples of the 151 kbp long \ac{LSDV}. The samples are identical to those used in the workflow validation tests. Detailed results for the profiling runs are illustrated in Supplementary~\figref{fig:apx-profiling}. \\
 
-\begin{figure}[ht]
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{table}[ht!]
     \centering
-	\begin{subfigure}[b]{1.1\textwidth}
-        \includegraphics[width=1.0\textwidth]{media/4-profiling-cputime.png}
-        \caption{Profiling of assembly versus mapping}
-        \label{fig:4-profiling-cpu}
-    \end{subfigure}
-    \medskip
-	\begin{subfigure}[b]{1.1\textwidth}
-        \includegraphics[width=1.0\textwidth]{media/4-profiling-maxmem.png}
-        \caption{Profiling of assembly versus mapping}
-        \label{fig:4-profiling-meem}
-    \end{subfigure}
-    \caption{Profiling}
-\end{figure}
-\begin{figure}[ht]\ContinuedFloat
-    \centering
-	\begin{subfigure}[b]{1.1\textwidth}
-        \includegraphics[width=1.0\textwidth]{media/4-profiling-wallclock.png}
-        \caption{Profiling of assembly versus mapping }
-        \label{fig:4-profiling-wallclock}
-    \end{subfigure}
-    \caption{Profiling (cont.)}
-    \label{fig:4-profiling}
-\end{figure}
-
-on a locally installed galaxy server: depends on the cpu alone
-
-% % smallest EC2 machine we could find is m5d.4xlarge (64 GB / 16 vCPUs / Intel Xeon Platinum 8175). 
-% smallest EC2 machine we could find is m3.2xlarge (30 GB / 8 vCPUs / Intel Xeon E5-2670 v2 (Ivy Bridge/Sandy Bridge))
-
-% poxv. wf less than 20min
+    \begin{tabular}{lccc}
+    \hline
+                                                                                                   & \multicolumn{1}{l}{} & \multicolumn{1}{l}{\textbf{\begin{tabular}[c]{@{}l@{}}Mean value of\\ FMDV Samples\end{tabular}}} & \multicolumn{1}{l}{\textbf{\begin{tabular}[c]{@{}l@{}}Mean value of\\ LSDV Samples\end{tabular}}} \\ \hline
+    \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}l@{}}CPU Runtime\\ {[}min{]}\end{tabular}}}      & Mapping              & 1.2                                                                                               & 2.3                                                                                               \\
+                                                                                                   & Assembly             & 3.2                                                                                               & 28.7                                                                                              \\ \hline
+    \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}l@{}}Max. Memory\\ Usage {[}GB{]}\end{tabular}}} & Mapping              & 0.7                                                                                               & 1.2                                                                                               \\
+                                                                                                   & Assembly             & 1.7                                                                                               & 3.9                                                                                               \\ \hline
+    \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}l@{}}Wall Clock\\ Time {[}min{]}\end{tabular}}}  & Mapping              & 0.6                                                                                               & 0.7                                                                                               \\
+                                                                                                   & Assembly             & 2.8                                                                                               & 6.8                                                                                               \\ \hline
+    \end{tabular}
+    \caption{Mean metrics of profiling mapping with BWA-MEM and \textbackslash{}textit\{de novo\} assembly with rnaviralSPAdes.}
+\label{tab:4-profiling-mean}
+\end{table}
+An overview of the results is summarised in~\tabref{tab:4-profiling-mean} by average values across the samples. Comparing CPU runtimes reveal that for the shorter \ac{FMDV} genome, reads were assembled with \texttt{rnaviralSPAdes} in less than 9 minutes for a sample with more than 2 million reads and an averaging 25 seconds for a sample with very few reads. Maximal CPU runtime of the \texttt{BWA-MEM} tool was 3 minutes for the larger A sample, and below 1 minute for the other \ac{FMDV} samples. On the other hand, assembly of long \ac{LSDV} genome took 23 to 33 minutes on average for the two test samples. Mapping to a reference constantly took a bit more than 2 minutes for the long genome.\\
+Regarding the maximal memory usage, similar results are recorded: while assembly for all \ac{FMDV} samples claimed below 2.6 GB, the \ac{LSDV} samples requested ~3.8 GB for the job. Memory usage for mapping was below 1.4 GB for all samples, while the \ac{FMDV} A sample with many reads requested the most memory and the other \ac{FMDV} samples took 0.8 to 1.2 GB of memory.\\
+Lastly, wall clock time made up from the queuing time plus the job runtime was recorded and yet again yields similar results for the compared samples and the different tools. The wall clock time for \texttt{rnaviralSPAdes} to finish on the shorter \ac{FMDV} genome ranged between 1.6 and 3.8 minutes, while for the \ac{LSDV} samples, it ranged between 5.6 and 8 minutes. Conversely, mapping with \texttt{BWA-MEM} constantly took under one minute for all samples, except the \ac{FMDV} A sample with 1.1 minutes wall clock time. \\
+These results highlight the efficiency of a reference-based mapping tool at least for samples with a reasonably low count of reads compared to \textit{de novo} assembly with \texttt{rnaviralSPAdes}. Considering mean results, a shorter genome is always faster both using mapping and assembly tools. While the tests were run on the public Galaxy EU server, queuing times may differ when running the jobs on other weekdays or times. Moreover, on a self-hosted Galaxy server on a local machine, scheduling could be improved due to the independence of other Galaxy users and current server capacities, while the limiting factors are the CPU of the machine and the memory efficiency of the tool-specific algorithms itself.
