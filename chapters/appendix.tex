@@ -210,6 +210,34 @@ These tools have been wrapped in the Galaxy Tools IUC to make them available on 
 \label{fig:apx-aiv-trees-s8}
 \end{figure}
 
+\newpage
+\begin{table}[ht]
+	\refstepcounter{section}
+	\section*{\thesection \quad Ambiguous Sites of Consensus Sequences in LSDV Samples}
+	% \centering
+	\begin{tabular}{l|llc|lc}
+	\hline
+	\textbf{Reference}                      & \textbf{No.} & \textbf{\begin{tabular}[c]{@{}l@{}}Ambiguous sites\\ in consensus of \\ 20L81\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Length\\ {[}bases{]}\end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}Ambiguous sites\\ in consensus of\\ 20L70\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Length\\ {[}bases{]}\end{tabular}} \\ \hline
+	\multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}LSDV-\\Herbivac\end{tabular}}} & 1            & 1--264                                                                                      & 264                                                                   & 1--264                                                                                     & 264                                                                   \\
+											& 2            & 139,037--139,152                                                                            & 115                                                                   & 139,037--139,152                                                                           & 115                                                                   \\
+											& 3            & 150,500--150,526                                                                            & 26                                                                    & 150,502--150,526                                                                           & 24                                                                    \\ \hline
+	\multirow{5}{*}{\textbf{SPPV}}          & 4            & 1--264                                                                                      & 264                                                                   & 1--264                                                                                     & 264                                                                   \\
+											& 5            & 18,479--18,498                                                                              & 19                                                                    & 18,486--18,505                                                                             & 19                                                                    \\
+											& 6            & 110,083--110,106                                                                            & 23                                                                    & 110,090--110,113                                                                           & 23                                                                    \\
+											& 7            &                                                                                             &                                                                       & 129,582--129,583                                                                           & 1                                                                     \\
+											& 8            & 150,075--150,198                                                                            & 123                                                                   & 150,072--150,192                                                                           & 120                                                                   \\ \hline
+	\multirow{3}{*}{\textbf{GTPV}}          & 9            & 1--264                                                                                      & 264                                                                   & 1--264                                                                                     & 264                                                                   \\
+											& 10           & 121,520--121,521                                                                            & 1                                                                     & 121,489--121,490                                                                           & 1                                                                     \\
+											& 11           & 149,959--149,973                                                                            & 14                                                                    & 149,931--149,942                                                                           & 11                                                                    \\ \hline
+	\end{tabular}
+	\caption[Ambiguous sites of consensus sequences in LSDV samples with varying reference.]{Ambiguous sites of consensus sequences in LSDV samples with varying reference, highlighting the equivocal positions with low coverage sites that occur due to low coverage and/or loose primer ends due to read mapping to a suboptimal reference.}
+\label{tab:apx-capv-n}
+\end{table}
+
+% nicht echt = reads sind da, aber keine Ref. -\textgreater wohin mappen? -\textgreater primer bzw. read enden hängen in der luft und könnten evtl. gegen LSDv ref. mappen
+% echt = reads sind da, Ref. ist da -\textgreater kein Konsensus/low coverage/sample-spezifisch}
+
+
 \begin{figure}[ht!]
 	\refstepcounter{section}
 	\section*{\thesection \quad Results of Tool Profiling for BWA-MEM and rnaviralSPAdes Runs}
@@ -224,15 +252,15 @@ These tools have been wrapped in the Galaxy Tools IUC to make them available on 
         \caption{Profiling of assembly vs. mapping, comparison of maximal memory usage for 4 FMDV and 2 LSDV samples.}
         \label{fig:4-profiling-mem}
     \end{subfigure}
-    \caption{Profiling of assembly vs. mapping.}
+    \caption[Profiling of assembly vs. mapping.]{Profiling of assembly vs. mapping using viral genomes of different lengths.}
 \end{figure}
-\begin{figure}[ht]\ContinuedFloat
+\begin{figure}[ht!]\ContinuedFloat
     \centering
-	\begin{subfigure}[b]{1.0\textwidth}
+	\begin{subfigure}[t]{1.0\textwidth}
         \includegraphics[width=1.0\textwidth]{media/4-profiling-wallclock.png}
         \caption{Profiling of assembly vs. mapping, comparison of job wall clock time for 4 FMDV and 2 LSDV samples.}
         \label{fig:4-profiling-wallclock}
     \end{subfigure}
-    \caption[Profiling of assembly vs. mapping (cont.).]{Profiling of assembly vs. mapping (cont.).}
+    \caption[Profiling of assembly vs. mapping (cont.).]{Profiling of assembly vs. mapping using viral genomes of different lengths (cont.).}
     \label{fig:apx-profiling}
 \end{figure}
