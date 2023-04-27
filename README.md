@@ -21,7 +21,11 @@ De novo assembly, megablast search to find a suitable reference for mapping and 
 * [FMDV Galaxy Workflow Part 1](workflows/fmdv-illumina-wf/fmdv-illumina-1.ga) (De novo assembly + BLASTn)
 * [FMDV Galaxy Workflow Part 2](workflows/fmdv-illumina-wf/fmdv-illumina-2.ga) (Mapping + consensus construction)
 
-### Tools
+### Supplementary Training Material
+* [Poxvirus Tiling Amplicon Training](https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/pox-tiled-amplicon/tutorial.html)
+* [AIV Sequence Analysis Training](https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/aiv-analysis/tutorial.html)
+
+### Galaxy Tools
 Contributions to Galaxy tools IUC:
 * [VAPOR](https://github.com/galaxyproject/tools-iuc/tree/main/tools/vapor) Classifies samples from short reads sequence data based on a given reference database
 * [snipit](https://github.com/galaxyproject/tools-iuc/tree/main/tools/snipit) A tool to summarise SNPs relative to a reference sequence
