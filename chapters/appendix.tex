@@ -21,7 +21,8 @@
 	\url{https://workflowhub.eu/workflows/439}
 	\item Dockstore:\\
 	\url{https://dockstore.org/workflows/github.com/iwc-workflows/pox-virus-amplicon/main:main?tab=info}
-	\item Galaxy Training Material: \todoit
+	\item Galaxy Training Material:\\
+	\url{https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/pox-tiled-amplicon/tutorial.html}
 	\item Galaxy history with workflow test run (\ac{LSDV} samples 20L70 and 20L81):\\
 	\url{https://usegalaxy.eu/u/vyetoria/h/pox-virus-illumina-amplicon-sample-lsdv} 
 \end{itemize}
@@ -234,10 +235,6 @@ These tools have been wrapped in the Galaxy Tools IUC to make them available on 
 \label{tab:apx-capv-n}
 \end{table}
 
-% nicht echt = reads sind da, aber keine Ref. -\textgreater wohin mappen? -\textgreater primer bzw. read enden hängen in der luft und könnten evtl. gegen LSDv ref. mappen
-% echt = reads sind da, Ref. ist da -\textgreater kein Konsensus/low coverage/sample-spezifisch}
-
-
 \begin{figure}[ht!]
 	\refstepcounter{section}
 	\section*{\thesection \quad Results of Tool Profiling for BWA-MEM and rnaviralSPAdes Runs}
@@ -256,10 +253,15 @@ These tools have been wrapped in the Galaxy Tools IUC to make them available on 
 \end{figure}
 \begin{figure}[ht!]\ContinuedFloat
     \centering
-	\begin{subfigure}[t]{1.0\textwidth}
+	\begin{subfigure}[b]{1.0\textwidth}
         \includegraphics[width=1.0\textwidth]{media/4-profiling-wallclock.png}
-        \caption{Profiling of assembly vs. mapping, comparison of job wall clock time for 4 FMDV and 2 LSDV samples.}
+        \caption{Profiling of assembly vs. mapping, comparison of job wall clock time which equals job execution time, for 4 FMDV and 2 LSDV samples.}
         \label{fig:4-profiling-wallclock}
+    \end{subfigure}
+	\begin{subfigure}[b]{1.0\textwidth}
+        \includegraphics[width=1.0\textwidth]{media/4-profiling-total.png}
+        \caption{Profiling of assembly vs. mapping, comparison of total waiting time for the job to finish for 4 FMDV and 2 LSDV samples.}
+        \label{fig:4-profiling-total}
     \end{subfigure}
     \caption[Profiling of assembly vs. mapping (cont.).]{Profiling of assembly vs. mapping using viral genomes of different lengths (cont.).}
     \label{fig:apx-profiling}
